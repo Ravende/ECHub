@@ -1,6 +1,6 @@
 package com.example.backend.service;
 
-import com.example.backend.dto.CafeApi;
+import com.example.backend.entity.CafeApi;
 import com.example.backend.repository.CafeApiRepository;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
