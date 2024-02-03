@@ -35,7 +35,6 @@ public class CafeApiService {
         for (String apiUrl : apiUrls) {
             // API 호출 및 응답 데이터 얻기
             String responseData = fetchApiData(apiUrl);
-
             // 응답 데이터를 DB에 저장
             saveCafeApi(responseData);
         }

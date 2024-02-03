@@ -16,7 +16,6 @@ public class CafeApi {
     private String kakaoUrl;
     private String latitude;
     private String longitude;
-    // 나머지 필요한 코드...
 }
 
 
