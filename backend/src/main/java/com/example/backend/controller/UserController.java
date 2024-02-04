@@ -28,4 +28,5 @@ public class UserController {
     public String login() {
         return "login"; // 로그인 페이지 템플릿 이름 반환 (src/main/resources/templates에 login.html 추가)
     }
+
 }

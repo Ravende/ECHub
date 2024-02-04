@@ -20,7 +20,6 @@ public class UserService {
         User user = new User();
         user.setEmail(registrationRequest.getEmail());
         user.setPassword(passwordEncoder.encode(registrationRequest.getPassword()));
-        // Set other user properties if needed...
 
         userRepository.save(user);
     }

@@ -5,14 +5,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.Order;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.SecurityConfigurerAdapter;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.DefaultSecurityFilterChain;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Configuration
 @EnableWebSecurity
@@ -37,12 +40,13 @@ public class SecurityConfiguration extends SecurityConfigurerAdapter<DefaultSecu
         return new LoginSuccessHandler();
     }
 
-    @Override
-    public void init(HttpSecurity http) throws Exception {
+    @Bean
+    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests(authorizeRequests ->
                         authorizeRequests
-                                .requestMatchers("/api/auth/signup", "/login", "/css/**", "/js/**").permitAll()
+                                .requestMatchers("/api/auth/signup", "/login", "/css/**", "/js/**","/h2-console/**", "/map.html").permitAll()
+                                .requestMatchers(HttpMethod.POST, "/api/auth/signup","/login","/logout").permitAll()
                                 .anyRequest().authenticated()
                 )
                 .formLogin(formLogin ->
@@ -56,12 +60,19 @@ public class SecurityConfiguration extends SecurityConfigurerAdapter<DefaultSecu
                                 .logoutSuccessUrl("/")
                                 .permitAll()
                 );
-    }
-
-    @Bean
-    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-
         return http.build();
     }
+
+    // security 비활성화
+    @Bean
+    public WebSecurityCustomizer webSecurityCustomizer() {
+        return (web) -> web.ignoring()
+                .requestMatchers(new AntPathRequestMatcher("/h2-console/**"))
+                .requestMatchers(new AntPathRequestMatcher("/login"))
+                .requestMatchers(new AntPathRequestMatcher("/logout"))
+                .requestMatchers(new AntPathRequestMatcher("/api/auth/signup"));
+    }
+
+
 
 }
