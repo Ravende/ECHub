@@ -21,5 +21,3 @@ public class User {
     @Transient
     private String confirmPassword;
 }
-
-

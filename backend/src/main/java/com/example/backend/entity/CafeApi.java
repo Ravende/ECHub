@@ -21,5 +21,3 @@ public class CafeApi {
     private String latitude;
     private String longitude;
 }
-
-
