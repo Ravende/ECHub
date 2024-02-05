@@ -1,37 +1,26 @@
 package com.example.backend.service;
 
-import com.example.backend.dto.SignUp.SignUpRequest;
+import com.example.backend.dto.RegistrationRequest;
 import com.example.backend.entity.User;
-import com.example.backend.exception.UserConflictException;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.password.PasswordEncoder;
+import com.example.backend.repository.UserRepository;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
 public class UserService {
+    private final UserRepository userRepository;
+    private final BCryptPasswordEncoder passwordEncoder;
 
-    @Autowired
-    private UserRepository userRepository;
+    public UserService(UserRepository userRepository, BCryptPasswordEncoder passwordEncoder) {
+        this.userRepository = userRepository;
+        this.passwordEncoder = passwordEncoder;
+    }
 
-    @Autowired
-    private PasswordEncoder passwordEncoder;
-
-    public User signUp(SignUpRequest signUpRequest) {
-        // 중복 이메일 체크
-        if (userRepository.existsByEmail(signUpRequest.getEmail())) {
-            throw new UserConflictException("이미 등록된 이메일 주소입니다.");
-        }
-
-        // 비밀번호 해싱
-        String hashedPassword = passwordEncoder.encode(signUpRequest.getPassword());
-
-        // 사용자 등록
+    public void registerUser(RegistrationRequest registrationRequest) {
         User user = new User();
-        user.setUsername(signUpRequest.getUsername());
-        user.setEmail(signUpRequest.getEmail());
-        user.setPassword(hashedPassword);
-        // 기타 필요한 필드 설정
+        user.setEmail(registrationRequest.getEmail());
+        user.setPassword(passwordEncoder.encode(registrationRequest.getPassword()));
 
-        return userRepository.save(user);
+        userRepository.save(user);
     }
 }
