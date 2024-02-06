@@ -9,7 +9,6 @@ import org.springframework.http.*;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.client.RestTemplate;
-import java.util.List;
 
 
 @Service
@@ -21,7 +20,8 @@ public class CafeApiService {
     public CafeApiService(CafeApiRepository cafeApiRepository) {
         this.cafeApiRepository = cafeApiRepository;
     }
-@Transactional
+
+    @Transactional
     public void fetchAndSaveAllData() {
         String[] apiUrls = {
                 "https://dapi.kakao.com/v2/local/search/category.json?category_group_code=CE7&size=10&sort=accuracy&page=5&rect=126.942065%2C37.562414%2C126.945468%2C37.559716",
@@ -49,13 +49,26 @@ public class CafeApiService {
 
     private String fetchApiData(String apiUrl) {
         HttpHeaders headers = createHttpHeaders();
-
         HttpEntity<String> entity = new HttpEntity<>(headers);
-
         RestTemplate restTemplate = new RestTemplate();
-        ResponseEntity<String> response = restTemplate.exchange(apiUrl, HttpMethod.GET, entity, String.class);
 
-        return response.getBody();
+        ResponseEntity<String> response;
+        try {
+            response = restTemplate.exchange(apiUrl, HttpMethod.GET, entity, String.class);
+        } catch (Exception e) {
+            System.out.println("API 응답하지 않음");
+            return null;
+        }
+
+        String responseData = response.getBody();
+        if (responseData == null || responseData.isEmpty()) {
+            System.out.println("API 응답하지 않음");
+            return null;
+        }
+
+        System.out.println("API 응답 데이터: " + responseData); // API 응답 출력
+
+        return responseData;
     }
 
     private void saveCafeApi(String responseData) {
@@ -66,23 +79,19 @@ public class CafeApiService {
             JsonNode documentsNode = rootNode.path("documents");
 
             for (JsonNode documentNode : documentsNode) {
-                CafeApi cafeApi = new CafeApi();
-                cafeApi.setId(documentNode.path("id").asText());
-                cafeApi.setCafeName(documentNode.path("place_name").asText());
-                cafeApi.setAddress(documentNode.path("road_address_name").asText());
-                cafeApi.setPhone(documentNode.path("phone").asText());
-                cafeApi.setKakaoUrl(documentNode.path("place_url").asText());
-                cafeApi.setLatitude(documentNode.path("y").asText());
-                cafeApi.setLongitude(documentNode.path("x").asText());
+                String place_id = documentNode.path("id").asText();
+                String cafe_name = documentNode.path("place_name").asText();
+                String address = documentNode.path("road_address_name").asText();
+                String phone = documentNode.path("phone").asText();
+                String kakao_url = documentNode.path("place_url").asText();
+                String latitude = documentNode.path("y").asText();
+                String longitude = documentNode.path("x").asText();
 
+                CafeApi cafeApi = new CafeApi(place_id, cafe_name, address, phone, kakao_url, latitude, longitude);
                 cafeApiRepository.save(cafeApi);
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
-    }
-    // ID로 정렬된 데이터 조회
-    public List<CafeApi> findAllCafes() {
-        return cafeApiRepository.findAllByOrderById();
     }
 }
