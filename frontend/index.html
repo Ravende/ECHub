@@ -11,6 +11,7 @@
 <body>
 
   <header>
+
     <div id="logo">
       <h2>1 project</h2>
     </div>
@@ -18,13 +19,18 @@
     <div id="siteName">
       <h1>Ewha w. univ cafe Map</h1>
     </div>
+    <div id="loginBtnContainer">
+        <button onclick="openPopup()">로그인</button>
+      </div>
+  
+     
     
     <!--  <button type="button">로그인</button>
     <button type="button">회원가입</button>
     <button onclick="openPopup()">Show Popup</button>
     <div id="loginPopup">  
       <button onclick="closePopup()">Close Popup</button>
-    </div> -->
+    </div> 
 
     <script>
       function openPopup() {
@@ -33,48 +39,57 @@
       function closePopup() {
         document.getElementById('popup').style.display = 'none';
       }
-    </script>
+    </script>-->
     
   </header>
 
+  
   <aside>
     <div id="side">
-
+        
       <form action="" method="GET">
         <label for="cafe-search"></label>
         <input type="search" id="cafe-search" name="ps" placeholder="Search">
       </form>
+      
       <br>
     
       <select id="hashtags" name="hashtags">
         <option value=""># 해시태그</option>
+        <option value=""># 매장이_넓어요</option>
+        <option value="학생"># 인스타_핫플</option>
+        <option value="학생"># 대화하기_좋아요</option>
+        <option value="학생"># 포토존</option>
+        <option value="학생"># 친절해요</option>
+        <option value="학생"># 매장이_청결해요</option>
+        <option value="학생"># 가성비가_좋아요</option>
+        <option value="학생"># 카공하기_좋아요</option>
+        <option value="학생"># 분위기_있어요</option>
+        <option value="학생"># 특별한_메뉴가_있어요</option>
+        <option value="학생"># 음료가_맛있어요</option>
+        <option value="학생"># 디저트가_맛있어요</option>
+        <option value="학생"># 화장실이_깨끗해요</option>
+    
       </select>
       <br><br>
 
-      <div id="cafeList" class="space-between">
-        <fieldset>
-          <ul>
-            <li>카페명</li>
-            <li>운영시간</li>
-          </ul>
-        </fieldset>
-        <br>
-        <fieldset>
-          <ul>
-            <li>카페명</li>
-            <li>운영시간</li>
-          </ul>
-        </fieldset>
-        <br>
-
-    
-
-    </div>
+      <div class="cafe-box">
+        <div class="cafe-name">카페명</div>
+        <div class="operating-hours">영업시간 : 09:00-08:00</div>
+        <div class="operating-state">영업상태</div>
+        <div class="menu">대표메뉴</div>
+      </div>
+      <div class="cafe-box">
+        <div class="cafe-name">카페명</div>
+        <div class="operating-hours">영업시간 : 09:00-08:00</div>
+        <div class="operating-state">영업상태</div>
+        <div class="menu">대표메뉴</div>
+      </div>
   </aside>
 
   <section>
     <div id="map" style="width:600px;height:600px;"></div>
-    <script type="test/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=843de9881c04c74982ab3924b1e63164&libraries=services"></script>
+    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=843de9881c04c74982ab3924b1e63164&libraries=services"></script>
     <script>
 
       var mapContainer = document.getElementById('map');
@@ -88,6 +103,35 @@
       var ps = new kakao.maps.services/Places();  //장소검색 객체생성
     </script>
   </section>
-  
+  <div> <!--로그인 버튼-->
+  <div id="loginPopup">
+    <h2>로그인</h2>
+    <form id="loginForm">
+      <label for="username">아이디:</label>
+      <input type="text" id="username" name="username" required>
+
+      <label for="password">비밀번호:</label>
+      <input type="password" id="password" name="password" required>
+
+      <button type="button" id="loginBtn" onclick="login()">로그인</button>
+    </form>
+    <button onclick="closePopup()">닫기</button>
+  </div>
+</div>
+  <script>
+    function openPopup() {
+      document.getElementById('loginPopup').style.display = 'block';
+    }
+
+    function closePopup() {
+      document.getElementById('loginPopup').style.display = 'none';
+    }
+
+    function login() {
+      // 로그인 처리 로직 추가
+      alert('로그인 성공!');
+      closePopup();
+    }
+  </script>
 </body>
 </html>
