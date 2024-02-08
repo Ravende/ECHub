@@ -12,4 +12,4 @@
 - Backend: [서자영](https://github.com/xeoxaxeo)
 
 
-### API 기능 명세서 (추가 예정)
+## API 기능 명세서 (추가 예정)
