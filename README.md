@@ -11,4 +11,5 @@
 - Frontend: [김민용](https://github.com/Ravende), [김승연](깃허브링크)
 - Backend: [서자영](https://github.com/xeoxaxeo)
 
+
 ### API 기능 명세서 (추가 예정)
