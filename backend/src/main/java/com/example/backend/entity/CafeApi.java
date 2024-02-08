@@ -13,25 +13,25 @@ public class CafeApi {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id; // 자동 생성되는 ID (기본키)
 
-    @Column(name="place_id")
+    @Column
     private String place_id;
 
-    @Column(name="cafe_name")
+    @Column
     private String cafe_name;
 
-    @Column(name="address")
+    @Column
     private String address;
 
-    @Column(name="phone")
+    @Column
     private String phone;
 
-    @Column(name="kakao_url")
+    @Column
     private String kakao_url;
 
-    @Column(name="latitude")
+    @Column
     private String latitude;
 
-    @Column(name="longitude")
+    @Column
     private String longitude;
 
     public CafeApi(String place_id, String cafe_name, String address, String phone, String kakao_url, String latitude, String longitude) {
