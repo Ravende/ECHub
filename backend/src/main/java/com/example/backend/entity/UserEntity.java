@@ -9,7 +9,7 @@ import lombok.Setter;
 @Getter
 @Setter
 
-public class User {
+public class UserEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY) // 자동 증가하는 기본키
     private Long user_id;
@@ -18,7 +18,4 @@ public class User {
     private String email;
     @Column
     private String password;
-
-    @Transient
-    private String confirmPassword;
 }
