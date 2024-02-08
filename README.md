@@ -10,6 +10,3 @@
 - UI/UX: [강시연](https://github.com/us2xince) 
 - Frontend: [김민용](https://github.com/Ravende), [김승연](https://github.com/bleuxsy)
 - Backend: [서자영](https://github.com/xeoxaxeo)
-
-
-## API 기능 명세서 (추가 예정)
