@@ -1,8 +1,10 @@
 package com.example.backend.repository;
 
-import com.example.backend.entity.User;
+import com.example.backend.entity.UserEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
-public interface UserRepository extends JpaRepository<User, Long> {
-    User findByEmail(String email);
+@Repository
+public interface UserRepository extends JpaRepository<UserEntity, Long> {
+    UserEntity findByEmail(String email);
 }

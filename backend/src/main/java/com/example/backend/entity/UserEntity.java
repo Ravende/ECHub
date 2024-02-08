@@ -5,19 +5,17 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Entity
-@Table(name = "users")
+@Table(name = "user")
 @Getter
 @Setter
-public class User {
+
+public class UserEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long userId;
+    @GeneratedValue(strategy = GenerationType.IDENTITY) // 자동 증가하는 기본키
+    private Long user_id;
 
     @Column(unique = true)
     private String email;
-
+    @Column
     private String password;
-
-    @Transient
-    private String confirmPassword;
 }
