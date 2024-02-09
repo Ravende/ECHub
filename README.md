@@ -4,7 +4,7 @@
 ## 프로젝트 소개
 ECHub (카페 지도 & 해시태그 추천 사이트) 이대역 주변의 카페를 대상으로 한 지도 페이지에서 해시태그, 카페명으로 카페를 검색할 수 있고, 카페 리스트에서 간단한 카페의 운영시간, 위치, 특이사항, 대표 메뉴등을 알 수 있다. 자세한 내용을 클릭하면 카페의 기본 정보와 이용자 리뷰도 확인 할 수 있다.
 
-ECC 1팀 카페지도 (eccproject1.netlify.app)
+[ECC 1팀 카페지도 (eccproject1.netlify.app)](https://eccproject1.netlify.app/)
 
 ## 팀 소개
 ### 팀명: EP.1 (ECC Project team 1)
