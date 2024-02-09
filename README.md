@@ -12,5 +12,17 @@
 - Backend: [서자영](https://github.com/xeoxaxeo)
 ### 사용 툴
 -프론트엔드:###React
+
+<img src="https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=React&logoColor=white">
+
 -UIUX:###Figma
+
+<img src="https://img.shields.io/badge/Figma-F24E1E?style=for-the-badge&logo=Figma&logoColor=white">
+
 -백엔트:###intelliJ, ###mySQL
+
+<img src="https://img.shields.io/badge/IntelliJ-000000?style=for-the-badge&logo=IntelliJ&logoColor=white">
+
+<img src="https://img.shields.io/badge/mySQL-4479A1?style=for-the-badge&logo=MySQL&logoColor=white">
+
+
