@@ -18,6 +18,7 @@ public class UserService {
         this.passwordEncoder = passwordEncoder;
     }
 
+    // 회원가입 (사용자 등록)
     public void registerUser(UserDto userDto) {
         UserEntity userEntity = new UserEntity();
         userEntity.setEmail(userDto.getEmail());
