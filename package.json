@@ -1,6 +1,11 @@
 {
   "devDependencies": {
-    "@babel/plugin-proposal-private-property-in-object": "^7.21.11"
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
+    "eslint": "^8.56.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-html": "^7.1.0",
+    "eslint-plugin-import": "^2.29.1"
   },
   "dependencies": {
     "gh-pages": "^6.1.1",
@@ -15,5 +20,5 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "description": ""
+  "description": "- UI/UX: [강시연](https://github.com/us2xince) \r - Frontend: [김민용](https://github.com/Ravende), [김승연](https://github.com/bleuxsy)\r - Backend: [서자영](https://github.com/xeoxaxeo)"
 }
