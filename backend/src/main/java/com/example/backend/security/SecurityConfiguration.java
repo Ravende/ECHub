@@ -49,15 +49,15 @@ public class SecurityConfiguration extends SecurityConfigurerAdapter<DefaultSecu
                         authorizeRequests
                                 .requestMatchers(HttpMethod.GET, "/api/**").permitAll()
                                 .requestMatchers(HttpMethod.POST, "/api/**").permitAll()
+                                .requestMatchers(HttpMethod.POST, "/api/cafe/*/review").authenticated()
                                 .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
-                                .requestMatchers("/","/api/**","/api/auth/**", "/css/**", "/js/**","/h2-console/**", "/map.html", "index.html").permitAll()
-                                .requestMatchers(HttpMethod.POST, "/api/cafes/*/reviews").authenticated()
+                                .requestMatchers("/","/api/**","/api/auth/**", "/css/**", "/js/**", "/error").permitAll()
                                 .anyRequest().authenticated()
                 )
                 .formLogin(formLogin ->
                         formLogin
                                 .loginPage("/api/auth/login")
-                                .permitAll() // 로그인 페이지에는 누구나 접근 가능하도록 설정
+                                .permitAll()
                                 .defaultSuccessUrl("/api/auth/success")
                 )
                 .logout(logout ->
@@ -74,8 +74,7 @@ public class SecurityConfiguration extends SecurityConfigurerAdapter<DefaultSecu
     public WebSecurityCustomizer webSecurityCustomizer() {
         return (web) -> web.ignoring()
                 .requestMatchers(new AntPathRequestMatcher("/api/**"))
-                .requestMatchers(new AntPathRequestMatcher("/h2-console/**"));
+                .requestMatchers(new AntPathRequestMatcher("/api/cafe/saveFromKakaoApi"));
     }
-
 
 }

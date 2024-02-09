@@ -14,4 +14,5 @@ public class EmailDomainValidator implements ConstraintValidator<ValidEmailDomai
     public boolean isValid(String email, ConstraintValidatorContext context) {
         return email != null && email.endsWith("@ewhain.net");
     }
+
 }
