@@ -1,6 +1,7 @@
 package com.example.backend.service;
 
-import com.example.backend.entity.CafeApi;
+import com.example.backend.dto.CafeApiDto;
+import com.example.backend.entity.CafeApiEntity;
 import com.example.backend.repository.CafeApiRepository;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -9,7 +10,6 @@ import org.springframework.http.*;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.client.RestTemplate;
-
 
 @Service
 public class CafeApiService {
@@ -36,7 +36,9 @@ public class CafeApiService {
             // API 호출 및 응답 데이터 얻기
             String responseData = fetchApiData(apiUrl);
             // 응답 데이터를 DB에 저장
-            saveCafeApi(responseData);
+            if (responseData != null) {
+                saveCafeApi(responseData);
+            }
         }
     }
 
@@ -62,7 +64,7 @@ public class CafeApiService {
 
         String responseData = response.getBody();
         if (responseData == null || responseData.isEmpty()) {
-            System.out.println("API 응답하지 않음");
+            System.out.println("API 응답 데이터가 비어 있음");
             return null;
         }
 
@@ -79,16 +81,35 @@ public class CafeApiService {
             JsonNode documentsNode = rootNode.path("documents");
 
             for (JsonNode documentNode : documentsNode) {
-                String place_id = documentNode.path("id").asText();
-                String cafe_name = documentNode.path("place_name").asText();
+                String placeId = documentNode.path("id").asText();
+                String cafeName = documentNode.path("place_name").asText();
                 String address = documentNode.path("road_address_name").asText();
                 String phone = documentNode.path("phone").asText();
-                String kakao_url = documentNode.path("place_url").asText();
+                String kakaoUrl = documentNode.path("place_url").asText();
                 String latitude = documentNode.path("y").asText();
                 String longitude = documentNode.path("x").asText();
 
-                CafeApi cafeApi = new CafeApi(place_id, cafe_name, address, phone, kakao_url, latitude, longitude);
-                cafeApiRepository.save(cafeApi);
+                // CafeApiDto 객체 생성하여 저장
+                CafeApiDto cafeApiDto = new CafeApiDto();
+                cafeApiDto.setPlaceId(placeId);
+                cafeApiDto.setCafeName(cafeName);
+                cafeApiDto.setRoadAddressName(address);
+                cafeApiDto.setPhone(phone);
+                cafeApiDto.setPlaceUrl(kakaoUrl);
+                cafeApiDto.setLatitude(latitude);
+                cafeApiDto.setLongitude(longitude);
+
+                // DTO 객체를 Entity로 변환하여 저장
+                CafeApiEntity cafeApiEntity = new CafeApiEntity();
+                cafeApiEntity.setPlaceId(cafeApiDto.getPlaceId());
+                cafeApiEntity.setCafeName(cafeApiDto.getCafeName());
+                cafeApiEntity.setAddress(cafeApiDto.getRoadAddressName());
+                cafeApiEntity.setPhone(cafeApiDto.getPhone());
+                cafeApiEntity.setKakaoUrl(cafeApiDto.getPlaceUrl());
+                cafeApiEntity.setLatitude(cafeApiDto.getLatitude());
+                cafeApiEntity.setLongitude(cafeApiDto.getLongitude());
+
+                cafeApiRepository.save(cafeApiEntity);
             }
         } catch (Exception e) {
             e.printStackTrace();
