@@ -51,7 +51,7 @@ public class SecurityConfiguration extends SecurityConfigurerAdapter<DefaultSecu
                                 .requestMatchers(HttpMethod.POST, "/api/**").permitAll()
                                 .requestMatchers(HttpMethod.POST, "/api/cafe/*/review").authenticated()
                                 .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
-                                .requestMatchers("/","/api/**","/api/auth/**", "/css/**", "/js/**").permitAll()
+                                .requestMatchers("/","/api/**","/api/auth/**", "/css/**", "/js/**", "/error").permitAll()
                                 .anyRequest().authenticated()
                 )
                 .formLogin(formLogin ->
@@ -73,7 +73,8 @@ public class SecurityConfiguration extends SecurityConfigurerAdapter<DefaultSecu
     @Bean
     public WebSecurityCustomizer webSecurityCustomizer() {
         return (web) -> web.ignoring()
-                .requestMatchers(new AntPathRequestMatcher("/api/**"));
+                .requestMatchers(new AntPathRequestMatcher("/api/**"))
+                .requestMatchers(new AntPathRequestMatcher("/api/cafe/saveFromKakaoApi"));
     }
 
 

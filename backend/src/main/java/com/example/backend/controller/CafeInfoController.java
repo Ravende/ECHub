@@ -1,4 +1,3 @@
-// CafeInfoController.java
 package com.example.backend.controller;
 
 import com.example.backend.dto.CafeBasicInfoDto;
@@ -22,7 +21,14 @@ public class CafeInfoController {
         this.cafeInfoService = cafeInfoService;
     }
 
-    // 전체 카페 리스트
+    // DB 생성
+    @GetMapping("/saveFromKakaoApi")
+    public ResponseEntity<String> saveCafesFromKakaoApi() {
+        cafeInfoService.saveCafesFromKakaoApi();
+        return ResponseEntity.status(HttpStatus.OK).body("DB에 성공적으로 등록되었습니다.");
+    }
+
+    // 전체 카페 리스트 조회
     @GetMapping
     public ResponseEntity<List<CafeBasicInfoDto>> getAllCafesBasicInfo() {
         List<CafeBasicInfoDto> cafesBasicInfo = cafeInfoService.getAllCafesBasicInfo();

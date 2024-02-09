@@ -7,7 +7,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity
-@Table(name = "cafe_info")
+@Table(name = "cafe")
 public class CafeInfoEntity {
 
     @Id
@@ -52,4 +52,10 @@ public class CafeInfoEntity {
 
     @Column(name = "best_menu")
     private String bestMenu;
+
+    @Column(name = "latitude")
+    private String latitude;
+
+    @Column(name = "longitude")
+    private String longitude;
 }
