@@ -5,6 +5,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ECC 1팀 카페지도</title>
+  <link href="EccStyle.css" rel="stylesheet">
+  <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=843de9881c04c74982ab3924b1e63164"></script>
 </head>
 
 <body>
@@ -91,22 +93,20 @@
   </aside>
 
   <section>
-    <div id="map" style="width:600px;height:600px;"></div>
-    <script type="text/javascript"
-      src="//dapi.kakao.com/v2/maps/sdk.js?appkey=843de9881c04c74982ab3924b1e63164&libraries=services"></script>
+    <div id="map" style="width:1090px;height:600px;"></div>
     <script>
+      var mapContainer = document.getElementById('map') // 지도를 표시할 div 
+      var mapOption = {
+        center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
+        level: 3 // 지도의 확대 레벨
+      };
 
-      const mapContainer = document.getElementById('map');
-      const mapOptions = {
-  center: new kakao.maps.LatLng(37.559716, 126.945468),
-  level: 3
-};
-
-      const map = new kakao.maps.Map(mapContainer, mapOptions);  // 지도생성
-
-      const ps = new kakao.maps.services() / Places();  // 장소검색 객체생성
+      // 지도를 표시할 div와  지도 옵션으로  지도를 생성
+      var map = new kakao.maps.Map(mapContainer, mapOption); 
     </script>
   </section>
+
+
   <div> <!--로그인 버튼-->
     <div id="loginPopup">
       <h2>로그인</h2>
