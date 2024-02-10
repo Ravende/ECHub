@@ -20,6 +20,7 @@ public class UserService {
 
     public void registerUser(UserDto userDto) {
         UserEntity userEntity = new UserEntity();
+        userEntity.setUsername(userDto.getUsername());
         userEntity.setEmail(userDto.getEmail());
         userEntity.setPassword(passwordEncoder.encode(userDto.getPassword()));
         userRepository.save(userEntity);
@@ -32,6 +33,11 @@ public class UserService {
             return true; // 인증 성공
         }
         return false; // 인증 실패
+    }
+
+    // username으로 사용자 찾기
+    public UserEntity findByUsername(String username) {
+        return userRepository.findByUsername(username);
     }
 
 }
