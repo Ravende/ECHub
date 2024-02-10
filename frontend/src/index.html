@@ -5,10 +5,11 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ECC 1팀 카페지도</title>
-  <link rel="stylesheet" href="EccStyle.css">
 </head>
 
 <body>
+  <div id="root"></div>
+
 
   <header>
 
@@ -19,41 +20,43 @@
     <div id="siteName">
       <h1>Ewha w. univ cafe Map</h1>
     </div>
+
+
     <div id="loginBtnContainer">
-        <button onclick="openPopup()">로그인</button>
-      </div>
-  
-     
-    
-    <!--  <button type="button">로그인</button>
+      <button onclick="openPopup()">로그인</button>
+    </div>
+
+
+    <!-- <button type="button">로그인</button>
     <button type="button">회원가입</button>
-    <button onclick="openPopup()">Show Popup</button>
-    <div id="loginPopup">  
+
+    <div id="loginPopup">
+      <button onclick="openPopup()">Show Popup</button>
       <button onclick="closePopup()">Close Popup</button>
-    </div> 
+    </div>
 
     <script>
       function openPopup() {
-        document.getElementById('popup').style.display = 'block';
+        document.getElementById("loginpopup").style.display = 'block';
       }
       function closePopup() {
-        document.getElementById('popup').style.display = 'none';
+        document.getElementById("loginpopup").style.display = 'none';
       }
-    </script>-->
-    
+    </script> -->
+
   </header>
 
-  
+
   <aside>
     <div id="side">
-        
+
       <form action="" method="GET">
         <label for="cafe-search"></label>
         <input type="search" id="cafe-search" name="ps" placeholder="Search">
       </form>
-      
+
       <br>
-    
+
       <select id="hashtags" name="hashtags">
         <option value=""># 해시태그</option>
         <option value=""># 매장이_넓어요</option>
@@ -69,7 +72,7 @@
         <option value="학생"># 음료가_맛있어요</option>
         <option value="학생"># 디저트가_맛있어요</option>
         <option value="학생"># 화장실이_깨끗해요</option>
-    
+
       </select>
       <br><br>
 
@@ -89,35 +92,36 @@
 
   <section>
     <div id="map" style="width:600px;height:600px;"></div>
-    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=843de9881c04c74982ab3924b1e63164&libraries=services"></script>
+    <script type="text/javascript"
+      src="//dapi.kakao.com/v2/maps/sdk.js?appkey=843de9881c04c74982ab3924b1e63164&libraries=services"></script>
     <script>
 
-      var mapContainer = document.getElementById('map');
-      var mapOptions = {
-        center: new kakao.maps.LatLng(37.559716, 126.945468),
-        level: 3
-      };
+      const mapContainer = document.getElementById('map');
+      const mapOptions = {
+  center: new kakao.maps.LatLng(37.559716, 126.945468),
+  level: 3
+};
 
-      var map = new kakao.maps.Map(mapContainer, mapOptions);  //지도생성
+      const map = new kakao.maps.Map(mapContainer, mapOptions);  // 지도생성
 
-      var ps = new kakao.maps.services/Places();  //장소검색 객체생성
+      const ps = new kakao.maps.services() / Places();  // 장소검색 객체생성
     </script>
   </section>
   <div> <!--로그인 버튼-->
-  <div id="loginPopup">
-    <h2>로그인</h2>
-    <form id="loginForm">
-      <label for="username">아이디:</label>
-      <input type="text" id="username" name="username" required>
+    <div id="loginPopup">
+      <h2>로그인</h2>
+      <form id="loginForm">
+        <label for="username">아이디:</label>
+        <input type="text" id="username" name="username" required>
 
-      <label for="password">비밀번호:</label>
-      <input type="password" id="password" name="password" required>
+        <label for="password">비밀번호:</label>
+        <input type="password" id="password" name="password" required>
 
-      <button type="button" id="loginBtn" onclick="login()">로그인</button>
-    </form>
-    <button onclick="closePopup()">닫기</button>
+        <button type="button" id="loginBtn" onclick="login()">로그인</button>
+      </form>
+      <button onclick="closePopup()">닫기</button>
+    </div>
   </div>
-</div>
   <script>
     function openPopup() {
       document.getElementById('loginPopup').style.display = 'block';
@@ -134,4 +138,5 @@
     }
   </script>
 </body>
+
 </html>
