@@ -4,14 +4,13 @@ import com.example.backend.dto.CafeBasicInfoDto;
 import com.example.backend.dto.CafeDetailInfoDto;
 import com.example.backend.dto.ReviewDto;
 import com.example.backend.entity.UserEntity;
+import com.example.backend.security.JwtUtil;
 import com.example.backend.service.CafeService;
 import com.example.backend.service.ReviewService;
 import com.example.backend.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -22,14 +21,17 @@ public class CafeController {
 
     private final CafeService cafeService;
     private final ReviewService reviewService;
-    private final UserService userService; // UserService 필드 추가
+    private final UserService userService;
+    private final JwtUtil jwtUtil;
 
     @Autowired
-    public CafeController(CafeService cafeService, ReviewService reviewService, UserService userService) {
+    public CafeController(CafeService cafeService, ReviewService reviewService, UserService userService, JwtUtil jwtUtil) {
         this.cafeService = cafeService;
         this.reviewService = reviewService;
-        this.userService = userService; // UserService 주입
+        this.userService = userService;
+        this.jwtUtil = jwtUtil; // jwtUtil 초기화
     }
+
     // DB 생성
     @GetMapping("/saveFromKakaoApi")
     public ResponseEntity<String> saveCafesFromKakaoApi() {
@@ -69,24 +71,35 @@ public class CafeController {
         }
     }
 
-    // 리뷰 작성 기능 추가
+    // 리뷰 작성 기능
     @PostMapping("/{cafeId}/review")
-    public ResponseEntity<Long> addReview(@PathVariable Long cafeId, @RequestBody ReviewDto reviewDto) {
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        if (authentication == null || !authentication.isAuthenticated()) {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(null); // 인증되지 않은 사용자
+    public ResponseEntity<String> addReview(@PathVariable Long cafeId, @RequestBody ReviewDto reviewDto, @RequestHeader("Authorization") String authorizationHeader) {
+        if (authorizationHeader == null || !authorizationHeader.startsWith("Bearer ")) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("로그인이 필요합니다."); // 헤더에 토큰이 없거나 올바르지 않은 형식인 경우
         }
 
-        // 사용자 이메일 가져오기
-        String userEmail = authentication.getName();
+        String jwtToken = authorizationHeader.substring(7); // "Bearer " 이후의 토큰 값 추출
+
+        if (!jwtUtil.validateToken(jwtToken)) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("로그인이 필요합니다."); // 유효하지 않은 토큰인 경우
+        }
+
+        // 토큰에서 사용자 이메일 추출
+        String userEmail = jwtUtil.getEmailFromToken(jwtToken);
+
         // 사용자 정보 조회
         UserEntity userEntity = userService.findByEmail(userEmail);
 
+        if (userEntity == null) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("로그인이 필요합니다."); // 사용자 정보를 찾을 수 없는 경우
+        }
+
+        // 여기서부터 리뷰 작성 기능 추가
         Long reviewId = reviewService.addReview(cafeId, reviewDto, userEntity); // ReviewService 사용
         if (reviewId != null) {
-            return ResponseEntity.status(HttpStatus.CREATED).body(reviewId);
+            return ResponseEntity.status(HttpStatus.CREATED).body("리뷰가 등록되었습니다.");
         } else {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null); // 해당하는 카페를 찾을 수 없음
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("해당하는 카페를 찾을 수 없습니다."); // 해당하는 카페를 찾을 수 없는 경우
         }
     }
 }
