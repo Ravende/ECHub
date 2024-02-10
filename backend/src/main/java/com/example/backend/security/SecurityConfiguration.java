@@ -77,5 +77,4 @@ public class SecurityConfiguration extends SecurityConfigurerAdapter<DefaultSecu
                 .requestMatchers(new AntPathRequestMatcher("/api/cafe/saveFromKakaoApi"));
     }
 
-
 }
