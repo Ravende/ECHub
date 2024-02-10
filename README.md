@@ -27,7 +27,9 @@ ECHub (카페 지도 & 해시태그 추천 사이트) 이대역 주변의 카페
 
 
 ## 관련 링크
-[API 명세서](https://complete-packet-4dd.notion.site/API-923e5554a4af46bab9d0259d40126395?pvs=4)
+[API 명세서](https://s-archive.notion.site/API-e20e206b2037479f9b8875bf791b0c94?pvs=4)
+
+
 Figma
 
 
