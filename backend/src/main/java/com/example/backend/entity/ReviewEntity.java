@@ -17,7 +17,7 @@ public class ReviewEntity {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "cafe_id")
-    private CafeInfoEntity cafe;
+    private CafeEntity cafe;
 
     @Column(name = "comment")
     private String comment;

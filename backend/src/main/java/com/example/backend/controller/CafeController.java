@@ -4,7 +4,7 @@ import com.example.backend.dto.CafeBasicInfoDto;
 import com.example.backend.dto.CafeDetailInfoDto;
 import com.example.backend.dto.ReviewDto;
 import com.example.backend.entity.UserEntity;
-import com.example.backend.service.CafeInfoService;
+import com.example.backend.service.CafeService;
 import com.example.backend.service.ReviewService;
 import com.example.backend.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,50 +18,50 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/cafe")
-public class CafeInfoController {
+public class CafeController {
 
-    private final CafeInfoService cafeInfoService;
+    private final CafeService cafeService;
     private final ReviewService reviewService;
     private final UserService userService; // UserService 필드 추가
 
     @Autowired
-    public CafeInfoController(CafeInfoService cafeInfoService, ReviewService reviewService, UserService userService) {
-        this.cafeInfoService = cafeInfoService;
+    public CafeController(CafeService cafeService, ReviewService reviewService, UserService userService) {
+        this.cafeService = cafeService;
         this.reviewService = reviewService;
         this.userService = userService; // UserService 주입
     }
     // DB 생성
     @GetMapping("/saveFromKakaoApi")
     public ResponseEntity<String> saveCafesFromKakaoApi() {
-        cafeInfoService.saveCafesFromKakaoApi();
+        cafeService.saveCafesFromKakaoApi();
         return ResponseEntity.status(HttpStatus.OK).body("DB에 성공적으로 등록되었습니다.");
     }
 
     // 전체 카페 리스트 조회
     @GetMapping
     public ResponseEntity<List<CafeBasicInfoDto>> getAllCafesBasicInfo() {
-        List<CafeBasicInfoDto> cafesBasicInfo = cafeInfoService.getAllCafesBasicInfo();
+        List<CafeBasicInfoDto> cafesBasicInfo = cafeService.getAllCafesBasicInfo();
         return new ResponseEntity<>(cafesBasicInfo, HttpStatus.OK);
     }
 
     // 키워드로 검색
     @GetMapping("/search")
     public ResponseEntity<List<CafeBasicInfoDto>> searchCafesByKeyword(@RequestParam("q") String keyword) {
-        List<CafeBasicInfoDto> cafesBasicInfo = cafeInfoService.searchCafesByKeyword(keyword);
+        List<CafeBasicInfoDto> cafesBasicInfo = cafeService.searchCafesByKeyword(keyword);
         return new ResponseEntity<>(cafesBasicInfo, HttpStatus.OK);
     }
 
     // 해시태그로 검색
     @GetMapping("/searchByTag")
     public ResponseEntity<List<CafeBasicInfoDto>> searchCafesByHashtag(@RequestParam("tag") String hashtag) {
-        List<CafeBasicInfoDto> cafesBasicInfo = cafeInfoService.searchCafesByHashtag(hashtag);
+        List<CafeBasicInfoDto> cafesBasicInfo = cafeService.searchCafesByHashtag(hashtag);
         return new ResponseEntity<>(cafesBasicInfo, HttpStatus.OK);
     }
 
     // 특정 카페 상세 정보 조회
     @GetMapping("/{cafeId}")
     public ResponseEntity<CafeDetailInfoDto> getCafeDetailInfo(@PathVariable Long cafeId) {
-        CafeDetailInfoDto cafeDetailInfo = cafeInfoService.getCafeDetailInfo(cafeId);
+        CafeDetailInfoDto cafeDetailInfo = cafeService.getCafeDetailInfo(cafeId);
         if (cafeDetailInfo != null) {
             return new ResponseEntity<>(cafeDetailInfo, HttpStatus.OK);
         } else {
@@ -77,10 +77,10 @@ public class CafeInfoController {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(null); // 인증되지 않은 사용자
         }
 
-        // 사용자 이름 가져오기
-        String username = authentication.getName();
+        // 사용자 이메일 가져오기
+        String userEmail = authentication.getName();
         // 사용자 정보 조회
-        UserEntity userEntity = userService.findByUsername(username);
+        UserEntity userEntity = userService.findByEmail(userEmail);
 
         Long reviewId = reviewService.addReview(cafeId, reviewDto, userEntity); // ReviewService 사용
         if (reviewId != null) {

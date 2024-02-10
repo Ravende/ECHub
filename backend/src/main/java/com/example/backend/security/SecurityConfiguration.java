@@ -69,7 +69,7 @@ public class SecurityConfiguration extends SecurityConfigurerAdapter<DefaultSecu
         return http.build();
     }
 
-    // security 비활성화 < 리다이렉션 문제 발생 시 보통 이걸로 해결 가능
+    // security 비활성화
     @Bean
     public WebSecurityCustomizer webSecurityCustomizer() {
         return (web) -> web.ignoring()

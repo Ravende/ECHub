@@ -3,8 +3,8 @@ package com.example.backend.service;
 import com.example.backend.dto.CafeApiDto;
 import com.example.backend.dto.CafeBasicInfoDto;
 import com.example.backend.dto.CafeDetailInfoDto;
-import com.example.backend.entity.CafeInfoEntity;
-import com.example.backend.repository.CafeInfoRepository;
+import com.example.backend.entity.CafeEntity;
+import com.example.backend.repository.CafeRepository;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,14 +23,14 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
-public class CafeInfoService {
+public class CafeService {
 
-    private final CafeInfoRepository cafeInfoRepository;
+    private final CafeRepository cafeRepository;
 
     //여기부터 수정
     @Autowired
-    public CafeInfoService(CafeInfoRepository cafeInfoRepository) {
-        this.cafeInfoRepository = cafeInfoRepository;
+    public CafeService(CafeRepository cafeRepository) {
+        this.cafeRepository = cafeRepository;
     }
 
     public void saveCafesFromKakaoApi() {
@@ -90,8 +90,8 @@ public class CafeInfoService {
 
                 for (JsonNode document : documents) {
                     CafeApiDto cafeApiDto = objectMapper.treeToValue(document, CafeApiDto.class);
-                    CafeInfoEntity cafeInfoEntity = convertToCafeInfoEntity(cafeApiDto);
-                    cafeInfoRepository.save(cafeInfoEntity);
+                    CafeEntity cafeEntity = convertToCafeInfoEntity(cafeApiDto);
+                    cafeRepository.save(cafeEntity);
                 }
             } catch (IOException e) {
                 e.printStackTrace();
@@ -99,21 +99,21 @@ public class CafeInfoService {
         }
     }
 
-    private CafeInfoEntity convertToCafeInfoEntity(CafeApiDto cafeApiDto) {
-        CafeInfoEntity cafeInfoEntity = new CafeInfoEntity();
-        cafeInfoEntity.setCafeName(cafeApiDto.getPlace_name());
-        cafeInfoEntity.setAddress(cafeApiDto.getRoad_address_name());
-        cafeInfoEntity.setPhone(cafeApiDto.getPhone());
-        cafeInfoEntity.setKakaoUrl(cafeApiDto.getPlace_url());
-        cafeInfoEntity.setLatitude(cafeApiDto.getY());
-        cafeInfoEntity.setLongitude(cafeApiDto.getX());
+    private CafeEntity convertToCafeInfoEntity(CafeApiDto cafeApiDto) {
+        CafeEntity cafeEntity = new CafeEntity();
+        cafeEntity.setCafeName(cafeApiDto.getPlace_name());
+        cafeEntity.setAddress(cafeApiDto.getRoad_address_name());
+        cafeEntity.setPhone(cafeApiDto.getPhone());
+        cafeEntity.setKakaoUrl(cafeApiDto.getPlace_url());
+        cafeEntity.setLatitude(cafeApiDto.getY());
+        cafeEntity.setLongitude(cafeApiDto.getX());
 
-        return cafeInfoEntity;
+        return cafeEntity;
     }
 
     // 전체 카페 기본 정보
     public List<CafeBasicInfoDto> getAllCafesBasicInfo() {
-        return cafeInfoRepository.findAll().stream()
+        return cafeRepository.findAll().stream()
                 .map(cafe -> {
                     CafeBasicInfoDto dto = new CafeBasicInfoDto();
                     dto.setCafeName(cafe.getCafeName());
@@ -131,7 +131,7 @@ public class CafeInfoService {
     public List<CafeBasicInfoDto> searchCafesByKeyword(String keyword) {
         keyword = keyword.toLowerCase(); // 검색 키워드를 소문자로 변환
 
-        return cafeInfoRepository.findByCafeNameContainingIgnoreCase(keyword).stream()
+        return cafeRepository.findByCafeNameContainingIgnoreCase(keyword).stream()
                 .map(cafe -> {
                     CafeBasicInfoDto dto = new CafeBasicInfoDto();
                     dto.setCafeName(cafe.getCafeName());
@@ -147,7 +147,7 @@ public class CafeInfoService {
 
     // 해시태그로 검색
     public List<CafeBasicInfoDto> searchCafesByHashtag(String hashtag) {
-        return cafeInfoRepository.findByHashtagContainingIgnoreCase(hashtag).stream()
+        return cafeRepository.findByHashtagContainingIgnoreCase(hashtag).stream()
                 .map(cafe -> {
                     CafeBasicInfoDto dto = new CafeBasicInfoDto();
                     dto.setCafeName(cafe.getCafeName());
@@ -163,7 +163,7 @@ public class CafeInfoService {
 
     // 카페의 상세 정보 조회
     public CafeDetailInfoDto getCafeDetailInfo(Long cafeId) {
-        CafeInfoEntity cafe = cafeInfoRepository.findById(cafeId).orElse(null);
+        CafeEntity cafe = cafeRepository.findById(cafeId).orElse(null);
         if (cafe != null) {
             CafeDetailInfoDto dto = new CafeDetailInfoDto();
             dto.setCafeName(cafe.getCafeName());
