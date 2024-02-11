@@ -123,6 +123,21 @@ public class CafeService {
                     dto.setPhone(cafe.getPhone());
                     dto.setHashtag(cafe.getHashtag());
                     dto.setBusinessStatus(getBusinessStatus(cafe));
+
+                    // 요일별 영업 시간 설정
+                    if (cafe.getOpeningHours() != null && !cafe.getOpeningHours().isEmpty()) {
+                        Map<String, String> businessHour = new HashMap<>();
+                        for (OpenNowEntity openNow : cafe.getOpeningHours()) {
+                            String dayOfWeek = openNow.getDayOfWeek().toString();
+                            String hours = openNow.getOpeningTime() + " - " + openNow.getClosingTime();
+                            businessHour.put(dayOfWeek, hours);
+                        }
+                        dto.setBusinessHour(businessHour);
+                    }
+                    // 현재 영업 상태 설정
+                    String businessStatus = getBusinessStatus(cafe);
+                    dto.setBusinessStatus(businessStatus);
+
                     return dto;
                 })
                 .collect(Collectors.toList());
@@ -140,6 +155,20 @@ public class CafeService {
                     dto.setPhone(cafe.getPhone());
                     dto.setHashtag(cafe.getHashtag());
                     dto.setBusinessStatus(getBusinessStatus(cafe));
+
+                    if (cafe.getOpeningHours() != null && !cafe.getOpeningHours().isEmpty()) {
+                        Map<String, String> businessHour = new HashMap<>();
+                        for (OpenNowEntity openNow : cafe.getOpeningHours()) {
+                            String dayOfWeek = openNow.getDayOfWeek().toString();
+                            String hours = openNow.getOpeningTime() + " - " + openNow.getClosingTime();
+                            businessHour.put(dayOfWeek, hours);
+                        }
+                        dto.setBusinessHour(businessHour);
+                    }
+
+                    String businessStatus = getBusinessStatus(cafe);
+                    dto.setBusinessStatus(businessStatus);
+
                     return dto;
                 })
                 .collect(Collectors.toList());
@@ -155,6 +184,21 @@ public class CafeService {
                     dto.setPhone(cafe.getPhone());
                     dto.setHashtag(cafe.getHashtag());
                     dto.setBusinessStatus(getBusinessStatus(cafe));
+
+                    if (cafe.getOpeningHours() != null && !cafe.getOpeningHours().isEmpty()) {
+                        Map<String, String> businessHour = new HashMap<>();
+                        for (OpenNowEntity openNow : cafe.getOpeningHours()) {
+                            String dayOfWeek = openNow.getDayOfWeek().toString();
+                            String hours = openNow.getOpeningTime() + " - " + openNow.getClosingTime();
+                            businessHour.put(dayOfWeek, hours);
+                        }
+                        dto.setBusinessHour(businessHour);
+                    }
+
+                    String businessStatus = getBusinessStatus(cafe);
+                    dto.setBusinessStatus(businessStatus);
+
+
                     return dto;
                 })
                 .collect(Collectors.toList());
@@ -178,7 +222,6 @@ public class CafeService {
             dto.setStudentDiscount(cafe.getStudentDiscount());
             dto.setBestMenu(cafe.getBestMenu());
 
-            // 요일별 영업 시간 설정
             if (cafe.getOpeningHours() != null && !cafe.getOpeningHours().isEmpty()) {
                 Map<String, String> businessHour = new HashMap<>();
                 for (OpenNowEntity openNow : cafe.getOpeningHours()) {
@@ -189,7 +232,6 @@ public class CafeService {
                 dto.setBusinessHour(businessHour);
             }
 
-            // 현재 영업 상태 설정
             String businessStatus = getBusinessStatus(cafe);
             dto.setBusinessStatus(businessStatus);
 
@@ -247,5 +289,4 @@ public class CafeService {
                 .filter(openNowEntity -> openNowEntity.getDayOfWeek().equals(currentDayOfWeek))
                 .findFirst();
     }
-
 }

@@ -3,6 +3,7 @@ package com.example.backend.dto;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.HashMap;
 import java.util.Map;
 
 @Getter
@@ -13,5 +14,5 @@ public class CafeBasicInfoDto {
     private String phone;
     private String hashtag;
     private String businessStatus;
-    private Map<String, String> businessHour;
+    private Map<String, String> businessHour = new HashMap<>();
 }
