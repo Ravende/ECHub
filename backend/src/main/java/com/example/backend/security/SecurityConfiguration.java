@@ -53,7 +53,6 @@ public class SecurityConfiguration extends SecurityConfigurerAdapter<DefaultSecu
         JwtAuthenticationFilter filter = new JwtAuthenticationFilter(jwtUtil());
         return filter;
     }
-
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
@@ -87,8 +86,6 @@ public class SecurityConfiguration extends SecurityConfigurerAdapter<DefaultSecu
     public WebSecurityCustomizer webSecurityCustomizer() {
         return (web) -> web.ignoring()
                 .requestMatchers(new AntPathRequestMatcher("/error"))
-                .requestMatchers(new AntPathRequestMatcher("/api/**"))
-                .requestMatchers(new AntPathRequestMatcher("/api/cafe/saveFromKakaoApi"));
+                .requestMatchers(new AntPathRequestMatcher("/api/**"));
     }
-
 }

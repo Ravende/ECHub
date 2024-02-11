@@ -29,14 +29,13 @@ public class UserService {
     public boolean login(UserDto userDto) {
         UserEntity userEntity = userRepository.findByEmail(userDto.getEmail());
         if (userEntity != null && passwordEncoder.matches(userDto.getPassword(), userEntity.getPassword())) {
-            return true; // 인증 성공
+            return true; // 성공
         }
-        return false; // 인증 실패
+        return false; // 실패
     }
 
     // 이메일로 사용자 조회
     public UserEntity findByEmail(String email) {
         return userRepository.findByEmail(email);
     }
-
 }

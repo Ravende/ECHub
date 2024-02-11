@@ -19,10 +19,10 @@ import java.util.Map;
 @RequestMapping("/api/auth")
 public class UserController {
     private final UserService userService;
-    private final JwtUtil jwtUtil; // JwtUtil 추가
-    public UserController(UserService userService, JwtUtil jwtUtil) { // JwtUtil 주입 추가
+    private final JwtUtil jwtUtil;
+    public UserController(UserService userService, JwtUtil jwtUtil) {
         this.userService = userService;
-        this.jwtUtil = jwtUtil; // jwtUtil 초기화
+        this.jwtUtil = jwtUtil;
     }
     @PostMapping("/signup")
     public ResponseEntity<String> registerUser(@Validated @RequestBody UserDto userDto, org.springframework.validation.BindingResult bindingResult) {

@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.List;
+
 @Getter
 @Setter
 @Entity
@@ -17,11 +19,8 @@ public class CafeEntity {
     @Column(name = "cafe_name")
     private String cafeName;
 
-    @Column(name = "open_hour")
-    private String openHour;
-
-    @Column(name = "close_hour")
-    private String closeHour;
+    @OneToMany(mappedBy = "cafe", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<OpenNowEntity> openingHours;
 
     @Column(name = "address")
     private String address;

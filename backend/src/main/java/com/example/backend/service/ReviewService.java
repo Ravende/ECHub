@@ -26,7 +26,7 @@ public class ReviewService {
         // 카페 정보 확인
         CafeEntity cafe = cafeRepository.findById(cafeId).orElse(null);
         if (cafe == null) {
-            return null; // 해당하는 카페를 찾을 수 없는 경우
+            return null;
         }
 
         // 리뷰 생성
