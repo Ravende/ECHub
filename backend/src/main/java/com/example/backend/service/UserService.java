@@ -25,6 +25,11 @@ public class UserService {
         userRepository.save(userEntity);
     }
 
+    // UserService의 메서드
+    public boolean isEmailAlreadyExists(String email) {
+        return userRepository.existsByEmail(email);
+    }
+
     // 로그인 인증
     public boolean login(UserDto userDto) {
         UserEntity userEntity = userRepository.findByEmail(userDto.getEmail());

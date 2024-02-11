@@ -32,6 +32,16 @@ public class UserController {
             bindingResult.getFieldErrors().forEach(error -> errorMessage.append(error.getDefaultMessage()).append("\n"));
             return ResponseEntity.badRequest().body(errorMessage.toString());
         } else {
+            // 이메일 중복 확인
+            if (userService.isEmailAlreadyExists(userDto.getEmail())) {
+                return ResponseEntity.badRequest().body("이미 가입된 이메일입니다.");
+            }
+
+            // 비밀번호 확인
+            if (!userDto.getPassword().equals(userDto.getConfirmPassword())) {
+                return ResponseEntity.badRequest().body("비밀번호와 비밀번호 확인이 일치하지 않습니다.");
+            }
+
             // 성공
             userService.registerUser(userDto);
             return ResponseEntity.ok("회원가입 성공!");
