@@ -23,11 +23,9 @@
       <h1>Ewha w. univ cafe Map</h1>
     </div>
 
-
     <div id="loginBtnContainer">
       <button onclick="openPopup()">로그인</button>
     </div>
-
 
     <!-- <button type="button">로그인</button>
     <button type="button">회원가입</button>
@@ -49,94 +47,46 @@
   </header>
 
 
-  <aside>
-    <div id="side">
+  <main>
+    <aside>
+      <div id="side">
 
-      <form action="" method="GET">
-        <label for="cafe-search"></label>
-        <input type="search" id="cafe-search" name="ps" placeholder="Search">
-      </form>
+        <form action="" method="GET">
+          <label for="cafe-search"></label>
+          <input type="search" id="cafe-search" name="ps" placeholder="Search">
+        </form>
 
-      <br>
+        <br>
 
-      <select id="hashtags" name="hashtags">
-        <option value=""># 해시태그</option>
-        <option value=""># 매장이_넓어요</option>
-        <option value="학생"># 인스타_핫플</option>
-        <option value="학생"># 대화하기_좋아요</option>
-        <option value="학생"># 포토존</option>
-        <option value="학생"># 친절해요</option>
-        <option value="학생"># 매장이_청결해요</option>
-        <option value="학생"># 가성비가_좋아요</option>
-        <option value="학생"># 카공하기_좋아요</option>
-        <option value="학생"># 분위기_있어요</option>
-        <option value="학생"># 특별한_메뉴가_있어요</option>
-        <option value="학생"># 음료가_맛있어요</option>
-        <option value="학생"># 디저트가_맛있어요</option>
-        <option value="학생"># 화장실이_깨끗해요</option>
-
-      </select>
-      <br><br>
-
-      <div class="cafe-box">
-        <div class="cafe-name">카페명</div>
-        <div class="operating-hours">영업시간 : 09:00-08:00</div>
-        <div class="operating-state">영업상태</div>
-        <div class="menu">대표메뉴</div>
-      </div>
-      <div class="cafe-box">
-        <div class="cafe-name">카페명</div>
-        <div class="operating-hours">영업시간 : 09:00-08:00</div>
-        <div class="operating-state">영업상태</div>
-        <div class="menu">대표메뉴</div>
-      </div>
-  </aside>
-
-  <section>
-    <div id="map" style="width:1090px;height:600px;"></div>
-    <script>
-      var mapContainer = document.getElementById('map') // 지도를 표시할 div 
-      var mapOption = {
-        center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
-        level: 3 // 지도의 확대 레벨
-      };
-
-      // 지도를 표시할 div와  지도 옵션으로  지도를 생성
-      var map = new kakao.maps.Map(mapContainer, mapOption); 
-    </script>
-  </section>
+        <select id="hashtags" name="hashtags">
 
 
-  <div> <!--로그인 버튼-->
-    <div id="loginPopup">
-      <h2>로그인</h2>
-      <form id="loginForm">
-        <label for="username">아이디:</label>
-        <input type="text" id="username" name="username" required>
+        </select>
+        <br><br>
 
-        <label for="password">비밀번호:</label>
-        <input type="password" id="password" name="password" required>
+        <div class="cafe-box">
+          <div class="cafe-name">카페명</div>
+          <div class="operating-hours">영업시간 : 09:00-08:00</div>
+          <div class="operating-state">영업상태</div>
+          <div class="menu">대표메뉴</div>
+        </div>
+    </aside>
 
-        <button type="button" id="loginBtn" onclick="login()">로그인</button>
-      </form>
-      <button onclick="closePopup()">닫기</button>
-    </div>
-  </div>
-  <script>
-    function openPopup() {
-      document.getElementById('loginPopup').style.display = 'block';
-    }
+    <section>
+      <div id="map" style="width:70%;height:600px;"></div>
+      <script>
+        var mapContainer = document.getElementById('map') // 지도를 표시할 div 
+        var mapOption = {
+          center: new kakao.maps.LatLng(37.559716, 126.945468), // 지도의 중심좌표
+          level: 3 // 지도의 확대 레벨
+        };
 
-    function closePopup() {
-      document.getElementById('loginPopup').style.display = 'none';
-    }
+        // 지도를 표시할 div와  지도 옵션으로  지도를 생성
+        var map = new kakao.maps.Map(mapContainer, mapOption); 
+      </script>
+    </section>
 
-    function login() {
-      // 로그인 처리 로직 추가
-      alert('로그인 성공!');
-      closePopup();
-    }
-  </script>
+  </main>
 </body>
 
 </html>
