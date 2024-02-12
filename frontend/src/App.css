@@ -145,6 +145,21 @@ li {
   flex-direction: column;
   justify-content: center;
 }
+.cafeinfo-box{
+  background-color: #fff;
+  margin: 5px;
+  height: 400px;
+  padding: 20px;
+  border: 2px solid #333;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+}
+
 .hash{
   border : 2px solid #276830;
   background-color: #419764;

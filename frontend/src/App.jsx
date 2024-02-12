@@ -1,6 +1,7 @@
 import './App.css';
 import Card from './Card';
 import React, {useState} from 'react';
+import CardInfo from './CardInfo';
 export default function App() {
   return (
     <>
@@ -41,6 +42,7 @@ export default function App() {
           <br/>
           <Card/>
           <Card/>
+          <CardInfo/>
         </div>
       </aside>
     </>
