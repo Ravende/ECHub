@@ -51,6 +51,19 @@
         "allowTaggedTemplates": true
       }
     ],
+    "eslint-plugin-import/no-named-as-default": "off",
+    "react/jsx-filename-extension": "off",
+    "import/no-unresolved": "off",
+    "import/prefer-default-export": "off",
+    "import/extensions": [
+      "error",
+      "ignorePackages",
+      {
+        "js": "never",
+        "ts": "never",
+        "tsx": "never"
+      }
+    ],
     "import/no-extraneous-dependencies": ["error", { "devDependencies": true }],
     "max-len": [
       "error",
