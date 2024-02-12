@@ -13,7 +13,7 @@ public class CafeDetailInfoDto {
     private String cafeName;
     private String address;
     private String phone;
-    private String hashtag;
+    private List<String> hashtag;
     private String kakaoUrl;
     private String waiting;
     private String scale;

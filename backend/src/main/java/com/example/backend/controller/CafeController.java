@@ -66,8 +66,8 @@ public class CafeController {
 
     // 해시태그 검색
     @GetMapping("/searchByTag")
-    public ResponseEntity<List<CafeBasicInfoDto>> searchCafesByHashtag(@RequestParam("tag") String hashtag) {
-        List<CafeBasicInfoDto> cafesBasicInfo = cafeService.searchCafesByHashtag(hashtag);
+    public ResponseEntity<List<CafeBasicInfoDto>> searchCafesByHashtag(@RequestParam("q") Long hashtagId) {
+        List<CafeBasicInfoDto> cafesBasicInfo = cafeService.searchCafesByHashtag(hashtagId);
         return new ResponseEntity<>(cafesBasicInfo, HttpStatus.OK);
     }
 

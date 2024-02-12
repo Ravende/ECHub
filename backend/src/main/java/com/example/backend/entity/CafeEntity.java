@@ -28,8 +28,13 @@ public class CafeEntity {
     @Column(name = "phone")
     private String phone;
 
-    @Column(name = "hashtag")
-    private String hashtag;
+    @ManyToMany
+    @JoinTable(
+            name = "cafe_hashtag",
+            joinColumns = @JoinColumn(name = "cafe_id"),
+            inverseJoinColumns = @JoinColumn(name = "hashtag_id")
+    )
+    private List<HashtagEntity> hashtag;
 
     @Column(name = "kakao_url")
     private String kakaoUrl;

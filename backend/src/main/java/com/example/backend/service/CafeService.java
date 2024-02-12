@@ -4,6 +4,7 @@ import com.example.backend.dto.CafeApiDto;
 import com.example.backend.dto.CafeBasicInfoDto;
 import com.example.backend.dto.CafeDetailInfoDto;
 import com.example.backend.entity.CafeEntity;
+import com.example.backend.entity.HashtagEntity;
 import com.example.backend.entity.OpenNowEntity;
 import com.example.backend.entity.ReviewEntity;
 import com.example.backend.repository.CafeRepository;
@@ -121,7 +122,7 @@ public class CafeService {
                     dto.setCafeName(cafe.getCafeName());
                     dto.setAddress(cafe.getAddress());
                     dto.setPhone(cafe.getPhone());
-                    dto.setHashtag(cafe.getHashtag());
+                    dto.setHashtag(cafe.getHashtag().stream().map(HashtagEntity::getTagName).collect(Collectors.toList()));
                     dto.setBusinessStatus(getBusinessStatus(cafe));
 
                     // 요일별 영업 시간 설정
@@ -132,7 +133,7 @@ public class CafeService {
                             String hours = openNow.getOpeningTime() + " - " + openNow.getClosingTime();
                             businessHour.put(dayOfWeek, hours);
                         }
-                        dto.setBusinessHour(businessHour);
+                        dto.setBusinessHour(sortBusinessHour(businessHour));
                     }
                     // 현재 영업 상태 설정
                     String businessStatus = getBusinessStatus(cafe);
@@ -145,7 +146,7 @@ public class CafeService {
 
     // 키워드 검색
     public List<CafeBasicInfoDto> searchCafesByKeyword(String keyword) {
-        keyword = keyword.toLowerCase(); // 대소문자 구분 X
+        keyword = keyword.toLowerCase(); // 영어 대소문자 구분 X
 
         return cafeRepository.findByCafeNameContainingIgnoreCase(keyword).stream()
                 .map(cafe -> {
@@ -153,7 +154,7 @@ public class CafeService {
                     dto.setCafeName(cafe.getCafeName());
                     dto.setAddress(cafe.getAddress());
                     dto.setPhone(cafe.getPhone());
-                    dto.setHashtag(cafe.getHashtag());
+                    dto.setHashtag(cafe.getHashtag().stream().map(HashtagEntity::getTagName).collect(Collectors.toList()));
                     dto.setBusinessStatus(getBusinessStatus(cafe));
 
                     if (cafe.getOpeningHours() != null && !cafe.getOpeningHours().isEmpty()) {
@@ -163,7 +164,7 @@ public class CafeService {
                             String hours = openNow.getOpeningTime() + " - " + openNow.getClosingTime();
                             businessHour.put(dayOfWeek, hours);
                         }
-                        dto.setBusinessHour(businessHour);
+                        dto.setBusinessHour(sortBusinessHour(businessHour));
                     }
 
                     String businessStatus = getBusinessStatus(cafe);
@@ -175,14 +176,14 @@ public class CafeService {
     }
 
     // 해시태그 검색
-    public List<CafeBasicInfoDto> searchCafesByHashtag(String hashtag) {
-        return cafeRepository.findByHashtagContainingIgnoreCase(hashtag).stream()
+    public List<CafeBasicInfoDto> searchCafesByHashtag(Long hashtagId) {
+        return cafeRepository.findByHashtagId(hashtagId).stream()
                 .map(cafe -> {
                     CafeBasicInfoDto dto = new CafeBasicInfoDto();
                     dto.setCafeName(cafe.getCafeName());
                     dto.setAddress(cafe.getAddress());
                     dto.setPhone(cafe.getPhone());
-                    dto.setHashtag(cafe.getHashtag());
+                    dto.setHashtag(cafe.getHashtag().stream().map(HashtagEntity::getTagName).collect(Collectors.toList()));
                     dto.setBusinessStatus(getBusinessStatus(cafe));
 
                     if (cafe.getOpeningHours() != null && !cafe.getOpeningHours().isEmpty()) {
@@ -192,18 +193,16 @@ public class CafeService {
                             String hours = openNow.getOpeningTime() + " - " + openNow.getClosingTime();
                             businessHour.put(dayOfWeek, hours);
                         }
-                        dto.setBusinessHour(businessHour);
+                        dto.setBusinessHour(sortBusinessHour(businessHour));
                     }
 
                     String businessStatus = getBusinessStatus(cafe);
                     dto.setBusinessStatus(businessStatus);
 
-
                     return dto;
                 })
                 .collect(Collectors.toList());
     }
-
 
     // 상세 정보 조회
     public CafeDetailInfoDto getCafeDetailInfo(Long cafeId) {
@@ -213,7 +212,7 @@ public class CafeService {
             dto.setCafeName(cafe.getCafeName());
             dto.setAddress(cafe.getAddress());
             dto.setPhone(cafe.getPhone());
-            dto.setHashtag(cafe.getHashtag());
+            dto.setHashtag(cafe.getHashtag().stream().map(HashtagEntity::getTagName).collect(Collectors.toList()));
             dto.setKakaoUrl(cafe.getKakaoUrl());
             dto.setWaiting(cafe.getWaiting());
             dto.setScale(cafe.getScale());
@@ -229,7 +228,7 @@ public class CafeService {
                     String hours = openNow.getOpeningTime() + " - " + openNow.getClosingTime();
                     businessHour.put(dayOfWeek, hours);
                 }
-                dto.setBusinessHour(businessHour);
+                dto.setBusinessHour(sortBusinessHour(businessHour));
             }
 
             String businessStatus = getBusinessStatus(cafe);
@@ -245,10 +244,21 @@ public class CafeService {
 
             return dto;
         } else {
-            return null; // 해당하는 카페가 없음
+            return null;
         }
     }
 
+    // 월화수목금토일 순서로 정렬
+    private Map<String, String> sortBusinessHour(Map<String, String> businessHour) {
+        // TreeMap을 사용하여 요일을 정렬
+        Map<String, String> sortedBusinessHour = new TreeMap<>(Comparator.comparingInt(this::getDayOfWeekOrder));
+        sortedBusinessHour.putAll(businessHour);
+        return sortedBusinessHour;
+    }
+
+    private int getDayOfWeekOrder(String dayOfWeek) {
+        return DayOfWeek.valueOf(dayOfWeek.toUpperCase()).getValue();
+    }
 
     // 영업 상태
     private String getBusinessStatus(CafeEntity cafe) {
