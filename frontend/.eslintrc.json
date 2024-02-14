@@ -1,6 +1,10 @@
 {
   "parserOptions": {
-    "ecmaVersion": "latest"
+    "ecmaVersion": "latest",
+    "sorceType": "module",
+    "ecmaFeatures": {
+      "jsx": true
+    }
   },
   "env": {
     "browser": true,
@@ -9,8 +13,15 @@
     "es2022": true
   },
   "globals": { "_": true },
-  "plugins": ["import", "html"],
-  "extends": ["airbnb-base", "prettier", "react-app"],
+  "plugins": ["import", "html", "react"],
+  "extends": [
+    "airbnb-base",
+    "prettier",
+    "react-app",
+    "eslint:recommended",
+    "plugin:react/recommended",
+    "plugin:react/jsx-runtime"
+  ],
   "rules": {
     // "off" or 0 - turn the rule off
     // "warn" or 1 - turn the rule on as a warning (doesn’t affect exit code)
@@ -38,6 +49,19 @@
         "allowTernary": true, // a || b
         "allowShortCircuit": true, // a ? b : 0
         "allowTaggedTemplates": true
+      }
+    ],
+    "eslint-plugin-import/no-named-as-default": "off",
+    "react/jsx-filename-extension": "off",
+    "import/no-unresolved": "off",
+    "import/prefer-default-export": "off",
+    "import/extensions": [
+      "error",
+      "ignorePackages",
+      {
+        "js": "never",
+        "ts": "never",
+        "tsx": "never"
       }
     ],
     "import/no-extraneous-dependencies": ["error", { "devDependencies": true }],
