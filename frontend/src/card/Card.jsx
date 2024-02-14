@@ -1,3 +1,4 @@
+
 import '../App.css';
 import './card.css';
 
@@ -9,15 +10,14 @@ export function Card() {
       <div className="operating-state">영업상태 : 영업중</div>
       <div className="menu">대표메뉴 : 생과일주스 </div>
       <div className="cafe-image">
-        <img className="cafeimg" alt="cafeimg1" src="./assets/cafeimage.jpg" />
+        <img id="cafeimg" alt="cafeimg1" src="./assets/cafeimage.jpg" />
       </div>
       <div className="hash-warp">
         <div className="hash">#포토존</div>
         <div className="hash">#포토존</div>
         <div className="hash">#포토존</div>
         <div className="hash">#포토존</div>
-        <div className="hash">#포토존</div>
-        <div className="hash">#포토존</div>
+        
       </div>
     </div>
   );

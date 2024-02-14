@@ -1,0 +1,99 @@
+
+.cafeinfo-box {
+    background-color: #fff;
+    margin: 5px;
+    height: 800px;
+    padding: 20px;
+    border: 2px solid #333;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .hash-warp {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .hash {
+    border: 2px solid #276830;
+    background-color: #419764;
+    font-size: 15px;
+    color: #fff;
+    padding: 8px;
+    position: relative;
+    top: -20px;
+    margin: 5px;
+    width: 90px;
+    height: 18px;
+    border-radius: 10px;
+    font-weight: lighter;
+  }
+  #cafeinfoimg {
+    position: relative;
+    left: 0px;
+    top:  -20px;
+    width: 270px;
+    height: 270px;
+    border-radius: 30px;
+    border: 2px solid #333;
+  }
+  #back_icon{
+    position:relative;
+    left:0px;
+    top:0px;
+    width:30px;
+    height:30px;
+
+  }
+
+#cafe-name {
+  font-size: 24px;
+  position: relative;
+  top: -30px;
+  left: 0px;
+  font-weight: bold;
+  color: #333;
+}
+
+#operating-hours,
+#operating-state{
+  position: relative;
+  top: -20px;
+  height:30px;
+  margin: 5px;
+  left: 0px;
+  font-size: 17px;
+  color: #666;
+}
+#menu{
+
+  position:relative;
+  top:0px;
+  
+  font-size: 17px;
+  color:#333;
+}
+.menulist-warp {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+#menulist{
+
+  position: relative;
+  left: 0px;
+  top:  0px;
+  width: 100px;
+  height: 100px;
+  
+  padding: 10px;
+  margin:5px;
+  border-radius: 100px;
+  border: 1px solid #333;
+
+}
+  
