@@ -27,7 +27,9 @@ ECHub (카페 지도 & 해시태그 추천 사이트) 이대역 주변의 카페
 
 
 ## 관련 링크
-[API 명세서](https://complete-packet-4dd.notion.site/API-923e5554a4af46bab9d0259d40126395?pvs=4)
+[API 명세서](https://s-archive.notion.site/API-e20e206b2037479f9b8875bf791b0c94?pvs=4)
+
+
 Figma
 
 
@@ -36,7 +38,8 @@ Figma
 - 타입은 소문자로
 - 제목 첫 글자는 대문자 (영어)
 - 제목 끝에 마침표 넣지 않기
-```feat : 새로운 기능에 대한 커밋
+```
+feat : 새로운 기능에 대한 커밋
 fix : 버그 수정에 대한 커밋
 build : 빌드 관련 파일 수정에 대한 커밋
 chore : 그 외 자잘한 수정에 대한 커밋
