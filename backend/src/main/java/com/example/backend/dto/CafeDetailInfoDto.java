@@ -15,7 +15,6 @@ public class CafeDetailInfoDto {
     private String phone;
     private List<String> hashtag;
     private String kakaoUrl;
-    private String waiting;
     private String scale;
     private String memo;
     private String official;
@@ -24,4 +23,5 @@ public class CafeDetailInfoDto {
     private String businessStatus;
     private Map<String, String> businessHour = new HashMap<>();
     private List<String> comments;
+    private String imageUrl;
 }

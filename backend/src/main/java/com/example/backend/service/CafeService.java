@@ -124,6 +124,7 @@ public class CafeService {
                     dto.setPhone(cafe.getPhone());
                     dto.setHashtag(cafe.getHashtag().stream().map(HashtagEntity::getTagName).collect(Collectors.toList()));
                     dto.setBusinessStatus(getBusinessStatus(cafe));
+                    dto.setImageUrl(cafe.getImageUrl());
 
                     // 요일별 영업 시간 설정
                     if (cafe.getOpeningHours() != null && !cafe.getOpeningHours().isEmpty()) {
@@ -156,6 +157,7 @@ public class CafeService {
                     dto.setPhone(cafe.getPhone());
                     dto.setHashtag(cafe.getHashtag().stream().map(HashtagEntity::getTagName).collect(Collectors.toList()));
                     dto.setBusinessStatus(getBusinessStatus(cafe));
+                    dto.setImageUrl(cafe.getImageUrl());
 
                     if (cafe.getOpeningHours() != null && !cafe.getOpeningHours().isEmpty()) {
                         Map<String, String> businessHour = new HashMap<>();
@@ -185,6 +187,7 @@ public class CafeService {
                     dto.setPhone(cafe.getPhone());
                     dto.setHashtag(cafe.getHashtag().stream().map(HashtagEntity::getTagName).collect(Collectors.toList()));
                     dto.setBusinessStatus(getBusinessStatus(cafe));
+                    dto.setImageUrl(cafe.getImageUrl());
 
                     if (cafe.getOpeningHours() != null && !cafe.getOpeningHours().isEmpty()) {
                         Map<String, String> businessHour = new HashMap<>();
@@ -214,12 +217,12 @@ public class CafeService {
             dto.setPhone(cafe.getPhone());
             dto.setHashtag(cafe.getHashtag().stream().map(HashtagEntity::getTagName).collect(Collectors.toList()));
             dto.setKakaoUrl(cafe.getKakaoUrl());
-            dto.setWaiting(cafe.getWaiting());
             dto.setScale(cafe.getScale());
             dto.setMemo(cafe.getMemo());
             dto.setOfficial(cafe.getOfficial());
             dto.setStudentDiscount(cafe.getStudentDiscount());
             dto.setBestMenu(cafe.getBestMenu());
+            dto.setImageUrl(cafe.getImageUrl());
 
             if (cafe.getOpeningHours() != null && !cafe.getOpeningHours().isEmpty()) {
                 Map<String, String> businessHour = new HashMap<>();

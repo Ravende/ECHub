@@ -16,4 +16,5 @@ public class CafeBasicInfoDto {
     private List<String> hashtag;
     private String businessStatus;
     private Map<String, String> businessHour = new HashMap<>();
+    private String imageUrl;
 }

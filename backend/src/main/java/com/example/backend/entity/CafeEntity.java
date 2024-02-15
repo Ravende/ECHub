@@ -39,9 +39,6 @@ public class CafeEntity {
     @Column(name = "kakao_url")
     private String kakaoUrl;
 
-    @Column(name = "waiting")
-    private String waiting;
-
     @Column(name = "scale")
     private String scale;
 
@@ -56,6 +53,9 @@ public class CafeEntity {
 
     @Column(name = "best_menu")
     private String bestMenu;
+
+    @Column(name = "image")
+    private String imageUrl;
 
     @Column(name = "latitude")
     private String latitude;
