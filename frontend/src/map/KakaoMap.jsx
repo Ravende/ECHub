@@ -1,6 +1,7 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { Map } from 'react-kakao-maps-sdk';
 import useKakaoLoader from './useKakaoLoader.jsx';
+import MapComponent from './map';
 
 export function KakaoMap() {
   useKakaoLoader();
@@ -17,7 +18,7 @@ export function KakaoMap() {
         style={{
           // 지도의 크기
           width: '100%',
-          height: '350px',
+          height: '600px',
         }}
         level={3} // 지도의 확대 레벨
       />
