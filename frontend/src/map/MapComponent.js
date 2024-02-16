@@ -9,6 +9,8 @@
 //     </div>
 // </div>
 
+const { kakao, marker } = window;
+
 /* 지도 생성 */
 const mapContainer = document.getElementById('map');
 const mapOptions = {
