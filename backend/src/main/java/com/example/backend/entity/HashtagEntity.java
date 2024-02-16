@@ -4,18 +4,21 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.List;
+
 @Entity
-@Table(name = "user")
+@Table(name = "hashtag_list")
 @Getter
 @Setter
+public class HashtagEntity {
 
-public class UserEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(unique = true)
-    private String email;
-    @Column
-    private String password;
+    @Column(name = "tag_name")
+    private String tagName;
+
+    @ManyToMany(mappedBy = "hashtag")
+    private List<CafeEntity> cafe;
 }
