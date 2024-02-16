@@ -5,11 +5,11 @@ import useKakaoLoader from './useKakaoLoader.jsx';
 
 const { kakao } = window;
 
-export function KakaoMap() {
+export default function KakaoMap() {
   useKakaoLoader();
 
   // eslint-disable-next-line
-  const mapRef = useRef < kakao.maps.Map > null;
+  const mapRef = useRef < kakao.maps.Map > (null); /* prettier-ignore */
 
   /* 지도 확대, 축소 버튼 */
   const zoomIn = () => {
@@ -42,16 +42,16 @@ export function KakaoMap() {
           }}
           level={3} // 지도의 확대 레벨
           ref={mapRef}></Map>
+      </div>
 
-        {/* 지도 확대, 축소 컨트롤 div */}
-        <div className="custom_zoomcontrol radius_border">
-          <span onClick={zoomIn}>
-            <img src="https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/ico_plus.png" alt="확대" />
-          </span>
-          <span onClick={zoomOut}>
-            <img src="https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/ico_minus.png" alt="축소" />
-          </span>
-        </div>
+      {/* 지도 확대, 축소 컨트롤 div */}
+      <div className="custom_zoomcontrol radius_border">
+        <span onClick={zoomIn}>
+          <img src="https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/ico_plus.png" alt="확대" />
+        </span>
+        <span onClick={zoomOut}>
+          <img src="https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/ico_minus.png" alt="축소" />
+        </span>
       </div>
     </div>
   );
