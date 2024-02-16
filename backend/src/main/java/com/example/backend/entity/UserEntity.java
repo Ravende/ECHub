@@ -11,8 +11,8 @@ import lombok.Setter;
 
 public class UserEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY) // 자동 증가하는 기본키
-    private Long user_id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
     @Column(unique = true)
     private String email;
