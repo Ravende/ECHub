@@ -25,13 +25,23 @@ public class UserService {
         userRepository.save(userEntity);
     }
 
-    // 로그인 인증
+    public boolean isEmailAlreadyExists(String email) {
+        return userRepository.existsByEmail(email);
+    }
+
     public boolean login(UserDto userDto) {
         UserEntity userEntity = userRepository.findByEmail(userDto.getEmail());
         if (userEntity != null && passwordEncoder.matches(userDto.getPassword(), userEntity.getPassword())) {
-            return true; // 인증 성공
+            return true;
         }
-        return false; // 인증 실패
+        return false;
     }
 
+    public UserEntity findByEmail(String email) {
+        return userRepository.findByEmail(email);
+    }
+
+    public void deleteUser(UserEntity user) {
+        userRepository.delete(user);
+    }
 }
