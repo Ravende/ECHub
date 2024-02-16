@@ -7,5 +7,5 @@ import java.util.List;
 
 public interface CafeRepository extends JpaRepository<CafeEntity, Long> {
     List<CafeEntity> findByCafeNameContainingIgnoreCase(String keyword);
-    List<CafeEntity> findByHashtagContainingIgnoreCase(String hashtag);
+    List<CafeEntity> findByHashtagId(Long hashtagId);
 }
