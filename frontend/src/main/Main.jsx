@@ -5,9 +5,15 @@ import KakaoMap from '../map/KakaoMap.jsx';
 export function Main() {
   return (
     <>
-      <Header />
-      <SideBar />
-      <KakaoMap />
+      <body>
+        <Header />
+        <main>
+          <SideBar />
+          <section>
+            <KakaoMap />
+          </section>
+        </main>
+      </body>
     </>
   );
 }
