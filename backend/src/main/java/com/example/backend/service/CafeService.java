@@ -110,7 +110,6 @@ public class CafeService {
         cafeEntity.setKakaoUrl(cafeApiDto.getPlace_url());
         cafeEntity.setLatitude(cafeApiDto.getY());
         cafeEntity.setLongitude(cafeApiDto.getX());
-
         return cafeEntity;
     }
 
@@ -119,6 +118,7 @@ public class CafeService {
         return cafeRepository.findAll().stream()
                 .map(cafe -> {
                     CafeBasicInfoDto dto = new CafeBasicInfoDto();
+                    dto.setCafeId(cafe.getId());
                     dto.setCafeName(cafe.getCafeName());
                     dto.setAddress(cafe.getAddress());
                     dto.setPhone(cafe.getPhone());
@@ -126,19 +126,26 @@ public class CafeService {
                     dto.setBusinessStatus(getBusinessStatus(cafe));
                     dto.setImageUrl(cafe.getImageUrl());
 
-                    // 요일별 영업 시간 설정
-                    if (cafe.getOpeningHours() != null && !cafe.getOpeningHours().isEmpty()) {
-                        Map<String, String> businessHour = new HashMap<>();
-                        for (OpenNowEntity openNow : cafe.getOpeningHours()) {
+                    List<Long> businessHourId = new ArrayList<>();
+                    Map<String, String> businessHour = new HashMap<>();
+                    String businessStatus = "";
+                    if (cafe.getOpeningHour() != null && !cafe.getOpeningHour().isEmpty()) {
+                        for (OpenNowEntity openNow : cafe.getOpeningHour()) {
+                            businessHourId.add(openNow.getId());
                             String dayOfWeek = openNow.getDayOfWeek().toString();
                             String hours = openNow.getOpeningTime() + " - " + openNow.getClosingTime();
                             businessHour.put(dayOfWeek, hours);
                         }
-                        dto.setBusinessHour(sortBusinessHour(businessHour));
+                        businessStatus = getBusinessStatus(cafe);
                     }
-                    // 현재 영업 상태 설정
-                    String businessStatus = getBusinessStatus(cafe);
+                    dto.setBusinessHourId(businessHourId);
+                    dto.setBusinessHour(sortBusinessHour(businessHour));
                     dto.setBusinessStatus(businessStatus);
+
+                    List<Long> hashtagId = cafe.getHashtag().stream()
+                            .map(HashtagEntity::getId)
+                            .collect(Collectors.toList());
+                    dto.setHashtagId(hashtagId);
 
                     return dto;
                 })
@@ -148,10 +155,10 @@ public class CafeService {
     // 키워드 검색
     public List<CafeBasicInfoDto> searchCafesByKeyword(String keyword) {
         keyword = keyword.toLowerCase(); // 영어 대소문자 구분 X
-
         return cafeRepository.findByCafeNameContainingIgnoreCase(keyword).stream()
                 .map(cafe -> {
                     CafeBasicInfoDto dto = new CafeBasicInfoDto();
+                    dto.setCafeId(cafe.getId());
                     dto.setCafeName(cafe.getCafeName());
                     dto.setAddress(cafe.getAddress());
                     dto.setPhone(cafe.getPhone());
@@ -159,18 +166,26 @@ public class CafeService {
                     dto.setBusinessStatus(getBusinessStatus(cafe));
                     dto.setImageUrl(cafe.getImageUrl());
 
-                    if (cafe.getOpeningHours() != null && !cafe.getOpeningHours().isEmpty()) {
-                        Map<String, String> businessHour = new HashMap<>();
-                        for (OpenNowEntity openNow : cafe.getOpeningHours()) {
+                    List<Long> businessHourId = new ArrayList<>();
+                    Map<String, String> businessHour = new HashMap<>();
+                    String businessStatus = "";
+                    if (cafe.getOpeningHour() != null && !cafe.getOpeningHour().isEmpty()) {
+                        for (OpenNowEntity openNow : cafe.getOpeningHour()) {
+                            businessHourId.add(openNow.getId());
                             String dayOfWeek = openNow.getDayOfWeek().toString();
                             String hours = openNow.getOpeningTime() + " - " + openNow.getClosingTime();
                             businessHour.put(dayOfWeek, hours);
                         }
-                        dto.setBusinessHour(sortBusinessHour(businessHour));
+                        businessStatus = getBusinessStatus(cafe);
                     }
-
-                    String businessStatus = getBusinessStatus(cafe);
+                    dto.setBusinessHourId(businessHourId);
+                    dto.setBusinessHour(sortBusinessHour(businessHour));
                     dto.setBusinessStatus(businessStatus);
+
+                    List<Long> hashtagId = cafe.getHashtag().stream()
+                            .map(HashtagEntity::getId)
+                            .collect(Collectors.toList());
+                    dto.setHashtagId(hashtagId);
 
                     return dto;
                 })
@@ -182,6 +197,7 @@ public class CafeService {
         return cafeRepository.findByHashtagId(hashtagId).stream()
                 .map(cafe -> {
                     CafeBasicInfoDto dto = new CafeBasicInfoDto();
+                    dto.setCafeId(cafe.getId());
                     dto.setCafeName(cafe.getCafeName());
                     dto.setAddress(cafe.getAddress());
                     dto.setPhone(cafe.getPhone());
@@ -189,18 +205,26 @@ public class CafeService {
                     dto.setBusinessStatus(getBusinessStatus(cafe));
                     dto.setImageUrl(cafe.getImageUrl());
 
-                    if (cafe.getOpeningHours() != null && !cafe.getOpeningHours().isEmpty()) {
-                        Map<String, String> businessHour = new HashMap<>();
-                        for (OpenNowEntity openNow : cafe.getOpeningHours()) {
+                    List<Long> businessHourId = new ArrayList<>();
+                    Map<String, String> businessHour = new HashMap<>();
+                    String businessStatus = "";
+                    if (cafe.getOpeningHour() != null && !cafe.getOpeningHour().isEmpty()) {
+                        for (OpenNowEntity openNow : cafe.getOpeningHour()) {
+                            businessHourId.add(openNow.getId());
                             String dayOfWeek = openNow.getDayOfWeek().toString();
                             String hours = openNow.getOpeningTime() + " - " + openNow.getClosingTime();
                             businessHour.put(dayOfWeek, hours);
                         }
-                        dto.setBusinessHour(sortBusinessHour(businessHour));
+                        businessStatus = getBusinessStatus(cafe);
                     }
-
-                    String businessStatus = getBusinessStatus(cafe);
+                    dto.setBusinessHourId(businessHourId);
+                    dto.setBusinessHour(sortBusinessHour(businessHour));
                     dto.setBusinessStatus(businessStatus);
+
+                    List<Long> hashtagIds = cafe.getHashtag().stream()
+                            .map(HashtagEntity::getId)
+                            .collect(Collectors.toList());
+                    dto.setHashtagId(hashtagIds);
 
                     return dto;
                 })
@@ -212,6 +236,7 @@ public class CafeService {
         CafeEntity cafe = cafeRepository.findById(cafeId).orElse(null);
         if (cafe != null) {
             CafeDetailInfoDto dto = new CafeDetailInfoDto();
+            dto.setCafeId(cafe.getId());
             dto.setCafeName(cafe.getCafeName());
             dto.setAddress(cafe.getAddress());
             dto.setPhone(cafe.getPhone());
@@ -224,26 +249,36 @@ public class CafeService {
             dto.setBestMenu(cafe.getBestMenu());
             dto.setImageUrl(cafe.getImageUrl());
 
-            if (cafe.getOpeningHours() != null && !cafe.getOpeningHours().isEmpty()) {
-                Map<String, String> businessHour = new HashMap<>();
-                for (OpenNowEntity openNow : cafe.getOpeningHours()) {
+            List<Long> businessHourId = new ArrayList<>();
+            Map<String, String> businessHour = new HashMap<>();
+            String businessStatus = "";
+            if (cafe.getOpeningHour() != null && !cafe.getOpeningHour().isEmpty()) {
+                for (OpenNowEntity openNow : cafe.getOpeningHour()) {
+                    businessHourId.add(openNow.getId());
                     String dayOfWeek = openNow.getDayOfWeek().toString();
                     String hours = openNow.getOpeningTime() + " - " + openNow.getClosingTime();
                     businessHour.put(dayOfWeek, hours);
                 }
-                dto.setBusinessHour(sortBusinessHour(businessHour));
+                businessStatus = getBusinessStatus(cafe);
             }
-
-            String businessStatus = getBusinessStatus(cafe);
+            dto.setBusinessHourId(businessHourId);
+            dto.setBusinessHour(sortBusinessHour(businessHour));
             dto.setBusinessStatus(businessStatus);
 
-            // 리뷰 조회
+            List<Long> hashtagId = cafe.getHashtag().stream()
+                    .map(HashtagEntity::getId)
+                    .collect(Collectors.toList());
+            dto.setHashtagId(hashtagId);
+
             List<ReviewEntity> reviews = reviewRepository.findByCafe(cafe);
-            List<String> comments = new ArrayList<>();
+            List<Long> commentId = new ArrayList<>();
+            List<String> comment = new ArrayList<>();
             for (ReviewEntity review : reviews) {
-                comments.add(review.getComment());
+                commentId.add(review.getId());
+                comment.add(review.getComment());
             }
-            dto.setComments(comments);
+            dto.setCommentId(commentId);
+            dto.setComment(comment);
 
             return dto;
         } else {
@@ -253,7 +288,6 @@ public class CafeService {
 
     // 월화수목금토일 순서로 정렬
     private Map<String, String> sortBusinessHour(Map<String, String> businessHour) {
-        // TreeMap을 사용하여 요일을 정렬
         Map<String, String> sortedBusinessHour = new TreeMap<>(Comparator.comparingInt(this::getDayOfWeekOrder));
         sortedBusinessHour.putAll(businessHour);
         return sortedBusinessHour;
@@ -266,18 +300,13 @@ public class CafeService {
     // 영업 상태
     private String getBusinessStatus(CafeEntity cafe) {
         Optional<OpenNowEntity> todayOpenInfo = getTodayOpenInfo(cafe);
-
-        // 영업 정보 없음
         if (todayOpenInfo.isEmpty()) {
             return "";
         }
-
         OpenNowEntity openNowEntity = todayOpenInfo.get();
         LocalDateTime now = LocalDateTime.now();
         DayOfWeek currentDayOfWeek = now.getDayOfWeek();
         LocalTime currentTime = now.toLocalTime();
-
-
         if (currentDayOfWeek.equals(openNowEntity.getDayOfWeek()) &&
                 currentTime.isAfter(openNowEntity.getOpeningTime()) &&
                 currentTime.isBefore(openNowEntity.getClosingTime())) {
@@ -287,17 +316,12 @@ public class CafeService {
         }
     }
 
-    // 금일 영업 정보 가져오기
     private Optional<OpenNowEntity> getTodayOpenInfo(CafeEntity cafe) {
         DayOfWeek currentDayOfWeek = LocalDateTime.now().getDayOfWeek();
-        List<OpenNowEntity> openNowEntityList = cafe.getOpeningHours();
-
-        // 영업 정보 없음
+        List<OpenNowEntity> openNowEntityList = cafe.getOpeningHour();
         if (openNowEntityList == null || openNowEntityList.isEmpty()) {
             return Optional.empty();
         }
-
-        // DB의 영업 정보 중 오늘의 정보 반환
         return openNowEntityList.stream()
                 .filter(openNowEntity -> openNowEntity.getDayOfWeek().equals(currentDayOfWeek))
                 .findFirst();

@@ -10,9 +10,11 @@ import java.util.Map;
 @Getter
 @Setter
 public class CafeDetailInfoDto {
+    private Long cafeId;
     private String cafeName;
     private String address;
     private String phone;
+    private List<Long> hashtagId;
     private List<String> hashtag;
     private String kakaoUrl;
     private String scale;
@@ -21,7 +23,9 @@ public class CafeDetailInfoDto {
     private String studentDiscount;
     private String bestMenu;
     private String businessStatus;
+    private List<Long> businessHourId;
     private Map<String, String> businessHour = new HashMap<>();
-    private List<String> comments;
+    private List<Long> commentId;
+    private List<String> comment;
     private String imageUrl;
 }
