@@ -3,8 +3,8 @@ import { Header } from '../header';
 import { SideBar } from '../sideBar';
 import KakaoMap from '../map/KakaoMap.jsx';
 // import {CardInfo} from '../cardInfo';
-
 import "./main.css";
+
 
 export function Main() {
   return (
@@ -18,6 +18,7 @@ export function Main() {
           </section>
         </main>
       </body>
+
       {/* <Router>
 <Switch>
     <Route path="/" component = {SideBar} />
@@ -25,7 +26,7 @@ export function Main() {
 </Switch>
       
       </Router> */}
-      
+
     </>
   );
 }
