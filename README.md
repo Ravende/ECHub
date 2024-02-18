@@ -8,7 +8,7 @@ ECHub (카페 지도 & 해시태그 추천 사이트) 이대역 주변의 카페
 
 ## 팀 소개
 ### 팀명: EP.1 (ECC Project team 1)
-- [팀 노션](https://complete-packet-4dd.notion.site/1-df4a3c5923d447deb4e0b7e4858487df?pvs=4)
+- [팀 노션] (https://www.notion.so/suuujin-kim/1-ea47bcffc72b44e18f7139b85ddd6800)
 ### 팀원 소개
 - UI/UX: [강시연](https://github.com/uoehisx) 
 - Frontend: [김민용](https://github.com/Ravende), [김승연](https://github.com/bleuxsy)
@@ -30,7 +30,7 @@ ECHub (카페 지도 & 해시태그 추천 사이트) 이대역 주변의 카페
 [API 명세서](https://s-archive.notion.site/API-e20e206b2037479f9b8875bf791b0c94?pvs=4)
 
 
-Figma
+[Figma](https://www.figma.com/file/QWNPoMThFe3JL2yZ4vckKn/ECHUB?type=design&node-id=0-1&mode=design&t=zUJ4ESH3nYinGoko-0)
 
 
 ## 커밋 메시지 작성 규칙
