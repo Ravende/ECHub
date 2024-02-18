@@ -2,14 +2,16 @@ package com.example.backend.controller;
 
 import com.example.backend.dto.JwtToken;
 import com.example.backend.dto.UserDto;
-import com.example.backend.entity.UserEntity;
 import com.example.backend.security.JwtUtil;
 import com.example.backend.service.UserService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Map;
 
@@ -61,6 +63,7 @@ public class UserController {
         return ResponseEntity.ok("로그아웃 되었습니다.");
     }
 
+    /*
     @PostMapping("/delete")
     public ResponseEntity<String> deleteUser(@RequestHeader("Authorization") String authorizationHeader) {
         if (authorizationHeader == null || !authorizationHeader.startsWith("Bearer ")) {
@@ -78,4 +81,5 @@ public class UserController {
         userService.deleteUser(userEntity);
         return ResponseEntity.ok("회원 탈퇴가 완료되었습니다.");
     }
+     */
 }
