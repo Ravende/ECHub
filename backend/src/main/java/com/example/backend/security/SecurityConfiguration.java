@@ -59,12 +59,11 @@ public class SecurityConfiguration extends SecurityConfigurerAdapter<DefaultSecu
                 .authorizeRequests(authorizeRequests ->
                         authorizeRequests
                                 .requestMatchers(HttpMethod.GET, "/api/**").permitAll()
-                                .requestMatchers(HttpMethod.POST, "/api/**").permitAll()
+                                .requestMatchers(HttpMethod.POST, "/api/auth/**").permitAll()
                                 .requestMatchers(HttpMethod.POST, "/api/*/error").permitAll()
                                 .requestMatchers(HttpMethod.POST, "/api/cafe/*/review").authenticated()
                                 .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
                                 .requestMatchers("/","/api/**","/api/auth/**", "/css/**", "/js/**", "/error").permitAll()
-                                .anyRequest().authenticated()
                 )
                 .formLogin(formLogin ->
                         formLogin
