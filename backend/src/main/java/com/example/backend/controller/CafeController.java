@@ -75,26 +75,20 @@ public class CafeController {
     @PostMapping("/{cafeId}/review")
     public ResponseEntity<String> addReview(@PathVariable Long cafeId, @RequestBody ReviewDto reviewDto, @RequestHeader("Authorization") String authorizationHeader) {
         if (authorizationHeader == null || !authorizationHeader.startsWith("Bearer ")) {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("로그인이 필요합니다."); // 헤더에 토큰 없음
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("로그인이 필요합니다.");
         }
 
         String jwtToken = authorizationHeader.substring(7);
-
         if (!jwtUtil.validateToken(jwtToken)) {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("로그인이 필요합니다."); // 유효하지 않은 토큰
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("로그인이 필요합니다.");
         }
 
-        // 토큰에서 사용자 이메일 추출
         String userEmail = jwtUtil.getEmailFromToken(jwtToken);
-
-        // 사용자 정보 조회
         UserEntity userEntity = userService.findByEmail(userEmail);
-
         if (userEntity == null) {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("로그인이 필요합니다."); // 조회 실패
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("로그인이 필요합니다.");
         }
 
-        // 리뷰 작성 기능
         Long reviewId = reviewService.addReview(cafeId, reviewDto, userEntity);
         if (reviewId != null) {
             return ResponseEntity.status(HttpStatus.CREATED).body("리뷰가 등록되었습니다.");
