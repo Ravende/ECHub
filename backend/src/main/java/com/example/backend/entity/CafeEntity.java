@@ -5,7 +5,6 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.util.List;
-
 @Getter
 @Setter
 @Entity
@@ -20,7 +19,7 @@ public class CafeEntity {
     private String cafeName;
 
     @OneToMany(mappedBy = "cafe", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<OpenNowEntity> openingHours;
+    private List<OpenNowEntity> openingHour;
 
     @Column(name = "address")
     private String address;
