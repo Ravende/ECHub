@@ -1,9 +1,10 @@
-
+import { Link } from "react-router-dom";
 import '../App.css';
 import './card.css';
 
 export function Card() {
   return (
+    <Link to="/cardInfo">
     <div className="cafe-box">
       <div className="cafe-name">카페명</div>
       <div className="operating-hours">영업시간 : 09:00-20:00</div>
@@ -20,5 +21,6 @@ export function Card() {
         
       </div>
     </div>
+    </Link>
   );
 }
