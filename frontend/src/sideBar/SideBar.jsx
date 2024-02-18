@@ -1,5 +1,5 @@
 import { Card } from '../card';
-// import { CardInfo } from '../cardInfo';
+import { CardInfo } from '../cardInfo';
 import { Search } from '../search';
 import { Hashtags } from '../hashtags';
 import '../App.css';
@@ -18,8 +18,10 @@ export function SideBar() {
         <Hashtags />
         <br />
         <br />
+        <CardInfo />
         <Card />
         <Card /> 
+        
       
       </div>
     </aside>
