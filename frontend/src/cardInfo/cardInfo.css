@@ -23,6 +23,8 @@
   }
   #review-name{
     position: relative;
+    color: #ffffff;
+    text-shadow: #000000;
     font-size: 23px; 
     top:0px;
     left: -70px;
@@ -49,7 +51,7 @@
     border-radius: 10px;
     font-weight: lighter;
   }
-  h3{
+  #review-text{
     position:relative;
     font-weight:lighter;
     font-size: 18px;
@@ -57,7 +59,7 @@
     height: 20px;
     left: 0px;
   }
-  h4{
+  #text{
     position:relative;
     font-weight: lighter;
     font-size:15px;
@@ -65,6 +67,28 @@
     height: 20px;
     left: 20px;
     top: -16px;
+  }
+  .write-box{
+    background-color: #1d5712;
+    width: 230px;
+    height: 200px;
+    padding: 20px;
+    border: 2px solid #333;
+    border-radius: 10px;
+    
+  }
+  .write {
+    background-color: #ffffffeb;
+    width: 220px;
+    height:170px;
+    margin:5px;
+    border:2px solid #333;
+    border-radius:10px ;
+  }
+  #write-text{
+    position:relative;
+    text-align: center;
+    top: 40%;
   }
   .hash-warp {
     display: flex;
@@ -76,6 +100,7 @@
     background-color: #419764;
     font-size: 15px;
     color: #fff;
+    text-shadow: #000000;
     padding: 8px;
     position: relative;
     top: -20px;
@@ -137,7 +162,7 @@
 #menu{
 
   position:relative;
-  top:20px;
+  top:25px;
   
   font-size: 17px;
   color:#333;
@@ -152,7 +177,7 @@
 
   position: relative;
   left: 0px;
-  top:  0px;
+  top:  25px;
   width: 100px;
   height: 100px;
   
