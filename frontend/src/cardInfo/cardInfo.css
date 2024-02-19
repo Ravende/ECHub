@@ -1,116 +1,110 @@
-
 .cafeinfo-box {
-    background-color: #fff;
-    margin: 5px;
-    height: 1050px;
-    padding: 20px;
-    border: 2px solid #333;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-  }
-  .review-box{
-    background-color: #7AC66D;
-    width: 230px;
-    height: 200px;
-    padding: 20px;
-    border: 2px solid #333;
-    border-radius: 10px;
-    
-  }
-  #review-name{
-    position: relative;
-    font-size: 23px; 
-    top:0px;
-    left: -70px;
-    height: 30px;
-    font-weight: bold;
-    
-  }
-  .review-wrap{
-    display:flex;
-    flex-wrap:wrap;
-    justify-content: center;
-  }
-  .review{
-    position: relative;
-    border: 2px solid #000000;
-    background-color: #ffffff;
-    font-size: 15px;
-    color: #000000;
-    padding: 8px;
-    top:0px;
-    margin: 5px;
-    width: 200px;
-    height: 20px;
-    border-radius: 10px;
-    font-weight: lighter;
-  }
-  h3{
-    position:relative;
-    font-weight:lighter;
-    font-size: 18px;
-    width: 50px;
-    height: 20px;
-    left: 0px;
-  }
-  h4{
-    position:relative;
-    font-weight: lighter;
-    font-size:15px;
-    width: 200px;
-    height: 20px;
-    left: 20px;
-    top: -16px;
-  }
-  .hash-warp {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-  .hash {
-    border: 2px solid #276830;
-    background-color: #419764;
-    font-size: 15px;
-    color: #fff;
-    padding: 8px;
-    position: relative;
-    top: -20px;
-    margin: 5px;
-    width: 90px;
-    height: 18px;
-    border-radius: 10px;
-    font-weight: lighter;
-  }
-  #cafeinfoimg {
-    position: relative;
-    left: 0px;
-    top:  -20px;
-    width: 270px;
-    height: 270px;
-    border-radius: 30px;
-    border: 2px solid #333;
-  }
-  #back_icon{
-    position:relative;
-    left:0px;
-    top:0px;
-    width:30px;
-    height:30px;
-
-  }
-  #cof-icon{
-
-    position:relative;
-    width:10px;
-    height:10px;
-    left:0px;
-    top:10px;
-    
-  }
+  background-color: #fff;
+  margin: 5px;
+  height: 1050px;
+  padding: 20px;
+  border: 2px solid #333;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.review-box {
+  background-color: #7ac66d;
+  width: 230px;
+  height: 200px;
+  padding: 20px;
+  border: 2px solid #333;
+  border-radius: 10px;
+}
+#review-name {
+  position: relative;
+  font-size: 23px;
+  top: 0px;
+  left: -70px;
+  height: 30px;
+  font-weight: bold;
+}
+.review-wrap {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.review {
+  position: relative;
+  border: 2px solid #000000;
+  background-color: #ffffff;
+  font-size: 15px;
+  color: #000000;
+  padding: 8px;
+  top: 0px;
+  margin: 5px;
+  width: 200px;
+  height: 20px;
+  border-radius: 10px;
+  font-weight: lighter;
+}
+h3 {
+  position: relative;
+  font-weight: lighter;
+  font-size: 18px;
+  width: 50px;
+  height: 20px;
+  left: 0px;
+}
+h4 {
+  position: relative;
+  font-weight: lighter;
+  font-size: 15px;
+  width: 200px;
+  height: 20px;
+  left: 20px;
+  top: -16px;
+}
+.hash-warp {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.hash {
+  border: 2px solid #276830;
+  background-color: #419764;
+  font-size: 15px;
+  color: #fff;
+  padding: 8px;
+  position: relative;
+  top: -20px;
+  margin: 5px;
+  width: 90px;
+  height: 18px;
+  border-radius: 10px;
+  font-weight: lighter;
+}
+#cafeinfoimg {
+  position: relative;
+  left: 0px;
+  top: -20px;
+  width: 270px;
+  height: 270px;
+  border-radius: 30px;
+  border: 2px solid #333;
+}
+#back_icon {
+  position: relative;
+  left: 0px;
+  top: 0px;
+  width: 30px;
+  height: 30px;
+}
+#cof-icon {
+  position: relative;
+  width: 10px;
+  height: 10px;
+  left: 0px;
+  top: 10px;
+}
 
 #cafe-name {
   font-size: 24px;
@@ -123,24 +117,23 @@
 }
 
 #operating-hours,
-#operating-state{
+#operating-state {
   position: relative;
   border: 2px solid #276830;
   background-color: #d8e2dc;
   top: -10px;
-  height:30px;
+  height: 30px;
   margin: 5px;
   left: 0px;
   font-size: 17px;
   color: #333;
 }
-#menu{
+#menu {
+  position: relative;
+  top: 20px;
 
-  position:relative;
-  top:20px;
-  
   font-size: 17px;
-  color:#333;
+  color: #333;
 }
 .menulist-warp {
   display: flex;
@@ -148,18 +141,15 @@
   justify-content: center;
 }
 
-#menulist{
-
+#menulist {
   position: relative;
   left: 0px;
-  top:  0px;
+  top: 0px;
   width: 100px;
   height: 100px;
-  
+
   padding: 10px;
-  margin:5px;
+  margin: 5px;
   border-radius: 30px;
   border: 1px solid #333;
-
 }
-  

@@ -3,8 +3,7 @@ import { Header } from '../header';
 import { SideBar } from '../sideBar';
 import KakaoMap from '../map/KakaoMap.jsx';
 // import {CardInfo} from '../cardInfo';
-import "./main.css";
-
+// import "./main.css";
 
 export function Main() {
   return (
@@ -26,7 +25,6 @@ export function Main() {
 </Switch>
       
       </Router> */}
-
     </>
   );
 }

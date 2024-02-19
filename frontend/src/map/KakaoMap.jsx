@@ -2,6 +2,7 @@
 import { Map, MapMarker } from 'react-kakao-maps-sdk';
 import { useRef, useState, useEffect } from 'react';
 import useKakaoLoader from './useKakaoLoader.jsx';
+import './map.css';
 
 export default function KakaoMap() {
   useKakaoLoader();
@@ -115,7 +116,7 @@ export default function KakaoMap() {
             {/* 인포윈도우 생성 */}
             {isOpen && info && info.content === marker.content && (
               <div className="InfoWindow">
-                <h3 style={{ lineHeight: '2.0' }}>{marker.content}</h3>
+                <h3 style={{ lineHeight: '1.0' }}>{marker.content}</h3>
                 <p style={{ lineHeight: '1.0' }}>
                   월~금: 12:00~22:00
                   <br />
