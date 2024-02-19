@@ -1,12 +1,13 @@
+/* 카페 검색 */
+
 form {
-    height: auto;
-  }
-  
-  #cafe-search {
-    width: 98%;
-    height: 50px;
-    padding: 8px;
-    border-radius: 10px;
-    background: #fafafaed;
-  }
-  
+  height: auto;
+}
+
+#cafe-search {
+  width: 98%;
+  height: 50px;
+  padding: 8px;
+  border-radius: 10px;
+  background: #fafafaed;
+}

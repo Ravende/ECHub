@@ -1,8 +1,9 @@
+/* 해시태그 */
 #hashtags {
-    background: #d9d9d9;
-    width: 98%;
-    height: 50px;
-    border-radius: 10px;
-    margin-top: 10px;
-    font-size: 15px;
-  }
+  background: #d9d9d9;
+  width: 98%;
+  height: 50px;
+  border-radius: 10px;
+  margin-top: 10px;
+  font-size: 15px;
+}
