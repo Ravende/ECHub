@@ -1,4 +1,3 @@
-import logo from './logo.svg';
 import './App.css';
 
 function App() {
@@ -10,7 +9,7 @@ function App() {
           <input type="search" id="cafe-search" name="ps" placeholder="Search" />
         </form>
 
-        <br/>
+        <br />
 
         <select id="hashtags" name="hashtags">
           <option value=""># 해시태그</option>
@@ -28,7 +27,8 @@ function App() {
           <option value="학생"># 디저트가_맛있어요</option>
           <option value="학생"># 화장실이_깨끗해요</option>
         </select>
-        <br/><br/>
+        <br />
+        <br />
 
         <div className="cafe-box">
           <div className="cafe-name">카페명</div>

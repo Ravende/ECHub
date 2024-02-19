@@ -1,7 +1,6 @@
-// import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { Header } from '../header';
-import { SideBar } from '../sideBar';
 import KakaoMap from '../map/KakaoMap.jsx';
+import { SideBar } from '../sideBar';
 // import {CardInfo} from '../cardInfo';
 // import "./main.css";
 
@@ -17,14 +16,6 @@ export function Main() {
           </section>
         </main>
       </body>
-
-      {/* <Router>
-<Switch>
-    <Route path="/" component = {SideBar} />
-    <Route path="/cardInfo" component = {CardInfo} />
-</Switch>
-      
-      </Router> */}
     </>
   );
 }
