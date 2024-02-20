@@ -86,7 +86,7 @@ export default function KakaoMap() {
           position: 'relative',
           overflow: 'hidden',
         }}
-        level={3}
+        level={4}
         ref={mapRef}
         onCreate={setMap}>
         {/* 지도 확대, 축소 컨트롤 div */}

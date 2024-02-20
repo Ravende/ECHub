@@ -6,6 +6,7 @@
 }
 
 .cafe-box {
+  position: relative;
   background-color: #fff;
   margin: 5px;
   height: 300px;
@@ -55,8 +56,9 @@
 }
 
 #cafeimg {
-  position: relative;
+  position: absolute;
   left: 90px;
+  right: 90px;
   top: -200px;
   width: 120px;
   height: 170px;
