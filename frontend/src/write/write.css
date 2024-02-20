@@ -1,0 +1,34 @@
+.write-box{
+    background-color: #1d5712;
+    width: 230px;
+    height: 200px;
+    padding: 20px;
+    border: 2px solid #333;
+    border-radius: 10px;
+    
+  }
+  .write {
+    background-color: #ffffffeb;
+    width: 220px;
+    height:170px;
+    margin:5px;
+    border:2px solid #333;
+    border-radius:10px ;
+  }
+  #write-text{
+    position:relative;
+    text-align: center;
+    top: 40%;
+  }
+
+#review-name{
+    position: relative;
+    color: #ffffff;
+    text-shadow: #000000;
+    font-size: 23px; 
+    top:0px;
+    left: -70px;
+    height: 30px;
+    font-weight: bold;
+    
+  }
