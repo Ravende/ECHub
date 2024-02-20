@@ -10,12 +10,10 @@ export function SideBar() {
     <aside>
       <div id="side">
         <Search />
-        <br />
         <Hashtags />
-        <br />
-        <br />
-        <Card />
-        <Card />
+        {[...Array(60)].map((_, index) => (
+          <Card key={index} />
+        ))}
       </div>
     </aside>
   );

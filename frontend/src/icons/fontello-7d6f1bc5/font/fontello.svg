@@ -1,0 +1,16 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns="http://www.w3.org/2000/svg">
+<metadata>Copyright (C) 2024 by original authors @ fontello.com</metadata>
+<defs>
+<font id="fontello" horiz-adv-x="1000" >
+<font-face font-family="fontello" font-weight="400" font-stretch="normal" units-per-em="1000" ascent="850" descent="-150" />
+<missing-glyph horiz-adv-x="1000" />
+<glyph glyph-name="search" unicode="&#xe800;" d="M335 246l25-25q-28-28-85-86t-73-74l-27 27q16 15 74 73t86 85z m245 551q136 0 234-97t97-234-97-234-234-96q-64 0-123 24l-255-257-184 185 256 255q-26 63-26 123 0 137 98 234t234 97z m0-551q91 0 155 64t64 156-64 155-155 64-156-64-64-155 64-156 156-64z" horiz-adv-x="928" />
+
+<glyph glyph-name="cup" unicode="&#xe801;" d="M0 538l0 93q0 26 17 43t42 20l39 113q13 43 58 43l563 0q45 0 58-43l39-113q24-2 41-20t18-43l0-93q0-26-19-44t-44-19l-33 0 1-3q1-3 1-5l-62-562q-4-24-22-39t-41-16l-437 0q-24 0-41 16t-22 39l-62 562q0 2 1 5l1 3-33 0q-26 0-44 19t-19 44z m63 0l749 0 0 93-749 0 0-93z m62 156l625 0-31 93-563 0z m31-219l10-94 543 0 10 94-563 0z m14-125l35-312 465 0 35 312-535 0z m39-344l10-94 437 0 10 94-457 0z" horiz-adv-x="875" />
+
+<glyph glyph-name="coffee" unicode="&#xf0f4;" d="M929 493q0 45-32 76t-76 31h-35v-214h35q45 0 76 31t32 76z m-929-429h1000q0-59-42-101t-101-42h-714q-59 0-101 42t-42 101z m1036 429q0-89-63-152t-152-62h-35v-18q0-52-37-88t-88-37h-393q-51 0-88 37t-37 88v410q0 15 11 26t25 10h642q89 0 152-63t63-151z" horiz-adv-x="1071.4" />
+</font>
+</defs>
+</svg>

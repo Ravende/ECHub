@@ -64,7 +64,14 @@
         "tsx": "never"
       }
     ],
-    "import/no-extraneous-dependencies": ["error", { "devDependencies": true }],
+    "import/no-extraneous-dependencies": [
+      "error",
+      {
+        "devDependencies": [true, "src/**/*.js", "src/**/*.jsx"],
+        "optionalDependencies": false,
+        "peerDependencies": false
+      }
+    ],
     "max-len": [
       "error",
       {
