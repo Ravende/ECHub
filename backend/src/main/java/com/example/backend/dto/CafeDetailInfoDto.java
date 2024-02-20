@@ -28,4 +28,6 @@ public class CafeDetailInfoDto {
     private List<Long> commentId;
     private List<String> comment;
     private String imageUrl;
+    private String latitude;
+    private String longitude;
 }

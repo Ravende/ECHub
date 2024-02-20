@@ -20,4 +20,6 @@ public class CafeBasicInfoDto {
     private List<Long> businessHourId;
     private Map<String, String> businessHour = new HashMap<>();
     private String imageUrl;
+    private String latitude;
+    private String longitude;
 }

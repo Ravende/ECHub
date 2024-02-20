@@ -125,7 +125,8 @@ public class CafeService {
                     dto.setHashtag(cafe.getHashtag().stream().map(HashtagEntity::getTagName).collect(Collectors.toList()));
                     dto.setBusinessStatus(getBusinessStatus(cafe));
                     dto.setImageUrl(cafe.getImageUrl());
-
+                    dto.setLatitude(cafe.getLatitude());
+                    dto.setLongitude(cafe.getLongitude());
                     List<Long> businessHourId = new ArrayList<>();
                     Map<String, String> businessHour = new HashMap<>();
                     String businessStatus = "";
@@ -165,6 +166,8 @@ public class CafeService {
                     dto.setHashtag(cafe.getHashtag().stream().map(HashtagEntity::getTagName).collect(Collectors.toList()));
                     dto.setBusinessStatus(getBusinessStatus(cafe));
                     dto.setImageUrl(cafe.getImageUrl());
+                    dto.setLatitude(cafe.getLatitude());
+                    dto.setLongitude(cafe.getLongitude());
 
                     List<Long> businessHourId = new ArrayList<>();
                     Map<String, String> businessHour = new HashMap<>();
@@ -204,6 +207,8 @@ public class CafeService {
                     dto.setHashtag(cafe.getHashtag().stream().map(HashtagEntity::getTagName).collect(Collectors.toList()));
                     dto.setBusinessStatus(getBusinessStatus(cafe));
                     dto.setImageUrl(cafe.getImageUrl());
+                    dto.setLatitude(cafe.getLatitude());
+                    dto.setLongitude(cafe.getLongitude());
 
                     List<Long> businessHourId = new ArrayList<>();
                     Map<String, String> businessHour = new HashMap<>();
@@ -248,6 +253,8 @@ public class CafeService {
             dto.setStudentDiscount(cafe.getStudentDiscount());
             dto.setBestMenu(cafe.getBestMenu());
             dto.setImageUrl(cafe.getImageUrl());
+            dto.setLatitude(cafe.getLatitude());
+            dto.setLongitude(cafe.getLongitude());
 
             List<Long> businessHourId = new ArrayList<>();
             Map<String, String> businessHour = new HashMap<>();
