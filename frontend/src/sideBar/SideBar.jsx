@@ -1,6 +1,6 @@
 import '../App.css';
 import { Card } from '../card';
-import { CardInfo } from '../cardInfo';
+// import { CardInfo } from '../cardInfo';
 import { Hashtags } from '../hashtags';
 import { Search } from '../search';
 import './sideBar.css';
@@ -14,7 +14,6 @@ export function SideBar() {
         <Hashtags />
         <br />
         <br />
-        <CardInfo />
         <Card />
         <Card />
       </div>

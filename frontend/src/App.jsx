@@ -4,13 +4,7 @@ import { CardInfoContainer } from './cardInfo';
 import { Main } from './main';
 
 export default function App() {
-  // <Router>
-  //   <Switch>
-  //     <Route path="/" component={SideBar} />
-  //     <Route path="/cardInfo" component={CardInfo} />
-  //   </Switch>
-  // </Router>;
-
+ 
   return (
     <Router>
       <Routes>
