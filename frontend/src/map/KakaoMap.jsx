@@ -86,7 +86,7 @@ export default function KakaoMap() {
           position: 'relative',
           overflow: 'hidden',
         }}
-        level={3}
+        level={4}
         ref={mapRef}
         onCreate={setMap}>
         {/* 지도 확대, 축소 컨트롤 div */}
@@ -114,7 +114,7 @@ export default function KakaoMap() {
             {/* 인포윈도우 생성 */}
             {isOpen && info && info.content === marker.content && (
               <div className="InfoWindow">
-                <h3 style={{ lineHeight: '1.0' }}>{marker.content}</h3>
+                <h3 style={{ lineHeight: '2.0' }}>{marker.content}</h3>
                 <p style={{ lineHeight: '1.0' }}>
                   월~금: 12:00~22:00
                   <br />

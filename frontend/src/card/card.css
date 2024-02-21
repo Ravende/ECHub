@@ -1,65 +1,68 @@
 /* css */
-.hash-warp {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-}
 
 .cafe-box {
+  position: relative;
   background-color: #fff;
-  margin: 5px;
+  width: 92%;
   height: 300px;
-  padding: 20px;
-  border: 2px solid #333;
+  padding: 10px;
+  margin-top: 40px;
+  background-color: #84a6352c;
   border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  text-align: center;
+  box-shadow: 5px 8px 3px rgba(0, 0, 0, 0.5);
+  /* text-align: center;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-}
-
-.hash {
-  border: 2px solid #276830;
-  background-color: #419764;
-  position: relative;
-  font-size: 15px;
-  color: #fff;
-  padding: 8px;
-  top: 80px;
-  margin: 5px;
-  width: 90px;
-  height: 18px;
-  border-radius: 10px;
-  font-weight: lighter;
+  justify-content: center; */
 }
 
 .cafe-name {
-  font-size: 24px;
-  position: relative;
-  top: 90px;
-  left: -70px;
+  font-size: 30px;
+  position: absolute;
   font-weight: bold;
   color: #333;
+  transform: translate(10%, 30%);
 }
 
 .operating-hours,
 .operating-state,
 .menu {
   position: relative;
-  top: 90px;
+  top: 60px;
   margin: 20px;
-  left: -70px;
-  font-size: 17px;
+  margin-left: 10px;
+  font-size: 20px;
   color: #666;
+  text-align: left;
+  line-height: 1;
 }
 
 #cafeimg {
-  position: relative;
-  left: 90px;
-  top: -200px;
+  position: absolute;
+  left: 270px;
+  top: 20px;
   width: 120px;
   height: 170px;
   border-radius: 30px;
-  border: 2px solid #333;
+}
+
+.hash {
+  background-color: #419764;
+  position: relative;
+  font-size: 15px;
+  color: #fff;
+  padding: 8px;
+  top: 65px;
+  margin: 5px;
+  width: 150px;
+  height: 20px;
+  white-space: nowrap;
+  border-radius: 15px;
+  font-weight: lighter;
+}
+
+.hash-warp {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
 }

@@ -4,10 +4,34 @@ form {
   height: auto;
 }
 
+.search-box {
+  position: relative;
+}
+
 #cafe-search {
-  width: 98%;
-  height: 50px;
+  width: 99%;
+  height: 60px;
   padding: 8px;
+  padding-top: 15px;
+  margin-bottom: 20px;
+  margin-top: 12px;
+  background-color: #bddcb8;
   border-radius: 10px;
-  background: #fafafaed;
+  box-shadow: 2px 5px 3px rgba(0, 0, 0, 0.5);
+  border: 0;
+  padding-left: 60px;
+}
+
+#cafe-search::placeholder {
+  font-size: 23px;
+  font-weight: 500;
+  color: black;
+  margin-left: 50px;
+}
+
+.icon-search {
+  position: absolute;
+  top: 20px;
+  left: 10px;
+  font-size: 30px;
 }
