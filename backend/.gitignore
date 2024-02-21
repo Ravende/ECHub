@@ -17,7 +17,8 @@ bin/
 !**/src/test/**/bin/
 
 ### IntelliJ IDEA ###
-application.properties
+backend/src/main/resources/application.properties
+backend/src/main/resources/ssl/keystore.p12
 .idea
 *.iws
 *.iml
