@@ -17,18 +17,27 @@
 }
 
 .cafe-name {
-  font-size: 30px;
+  font-size: 28px;
   position: absolute;
+  width:270px;
+  height:auto;
+  text-shadow: #000000;
+  top: 17px;
+  left: -10px;
   font-weight: bold;
-  color: #333;
+  text-align:  center;
+  color: #fff;
   transform: translate(10%, 30%);
+  background-color: #419764;
+  border-radius: 15px;
+  border-color: #666;
 }
 
 .operating-hours,
 .operating-state,
 .menu {
   position: relative;
-  top: 60px;
+  top: 80px;
   margin: 20px;
   margin-left: 10px;
   font-size: 20px;
@@ -39,7 +48,7 @@
 
 #cafeimg {
   position: absolute;
-  left: 270px;
+  left: 290px;
   top: 20px;
   width: 120px;
   height: 170px;
@@ -49,16 +58,17 @@
 .hash {
   background-color: #419764;
   position: relative;
-  font-size: 15px;
+  font-size: 15.5px;
   color: #fff;
   padding: 8px;
-  top: 65px;
+  top: 78px;
   margin: 5px;
-  width: 150px;
+  width: 155px;
   height: 20px;
   white-space: nowrap;
   border-radius: 15px;
   font-weight: lighter;
+  text-align: center;
 }
 
 .hash-warp {
@@ -66,3 +76,5 @@
   flex-wrap: wrap;
   justify-content: center;
 }
+
+
