@@ -1,26 +1,27 @@
 #menu {
-    position: relative;
-    top: 20px;
-  
-    font-size: 17px;
-    color: #333;
-  }
-  .menulist-warp {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-  
-  #menulist {
-    position: relative;
-    left: 0px;
-    top: 0px;
-    width: 100px;
-    height: 100px;
-  
-    padding: 10px;
-    margin: 5px;
-    border-radius: 30px;
-    border: 1px solid #333;
-  }
-  
+  position: relative;
+  top: 20px;
+  font-size: 25px;
+  color: #333;
+  text-align: center;
+  margin: 20px;
+}
+
+.menulist-warp {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+#menulist {
+  position: relative;
+  left: 0px;
+  top: 0px;
+  width: 100px;
+  height: 100px;
+  padding: 10px;
+  margin: 15px;
+  border-radius: 30px;
+  border: 1px solid #333;
+  box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.5);
+}
