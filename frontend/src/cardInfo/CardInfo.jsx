@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
+import axios from 'axios';
 import { Review } from '../review';
 import { Write } from '../write';
 import { Menu } from '../menu';
@@ -9,7 +10,8 @@ import './cardInfo.css';
 export function CardInfo() {
   const movePage = useNavigate();
   const [activeComponent, setActiveComponent] = useState('review');
-
+ 
+  
   const goPage = () => {
     movePage('/');
   };
@@ -21,9 +23,31 @@ export function CardInfo() {
   const goWrite = () => {
     setActiveComponent('write');
   };
+  const { cafeId } = useParams();
+  const [cafeData, setCafeData] = useState([]);
+  const getToday = () => {
+    const days = ['SUNDAY', 'MONDAY', 'TUESDAY', 'WEDNESDAY', 'THURSDAY', 'FRIDAY', 'SATURDAY'];
+    const todayIndex = new Date().getDay(); // 0부터 일요일, 1부터 월요일, ..., 6부터 토요일
+    return days[todayIndex];
+  };
+  const today = getToday();
+
+  useEffect(() => {
+    // Replace 'your-backend-url' with the actual URL of your backend service
+    axios
+      .get('https://echubserver.shop:8080/api/cafe/${cafeId}') // Updated endpoint
+      .then(response => {
+        console.log('Cafe Data:', response.data);
+        setCafeData(response.data); // Assuming the response is a list of cafes
+      })
+      .catch(error => {
+        console.error('Error fetching cafe data:', error);
+      });
+  }, []);
 
   return (
-    <div className="cafeinfo-box">
+    
+      <div className="cafeinfo-box">
 
       <button className = "backbtn"  onClick={goPage}>
 
@@ -31,16 +55,16 @@ export function CardInfo() {
       </button>
 
       <div className="cafe-image-info">
-        <img id="cafeinfoimg" alt="cafeimg2" src="./assets/cafeinfoimage.jpg" />
+        <img id="cafeinfoimg" alt="cafeimg2" src={cafeData.imageUrl} />
       </div>
-      <div id="cafe-name">카페명</div>
-      <div className="hash-warp">
-        <div className="hash_info">#포토존</div>
-        <div className="hash_info">#포토존</div>
-        <div className="hash_info">#포토존</div>
-        <div className="hash_info">#포토존</div>
-      </div>
-      <div id="operating-hours">평일 12:0~22:00 / 주말 11:00~22:00</div>
+      <div id="cafe-name">{cafeData.cafeName}</div>
+      {/* <div className="hash-warp">
+            {cafeData.hashtag.map(tag => (
+              <div key={tag} className="hash_info">
+                {tag}
+              </div>
+            ))}</div>
+      <div id="operating-hours">{`영업시간: ${cafeData.businessHour[today] || '-'} `}</div> */}
 
       {activeComponent === 'review' && <Review />}
       {activeComponent === 'write' && <Write />}
@@ -58,6 +82,7 @@ export function CardInfo() {
 
       <Menu />
     </div>
+    
   );
 }
 

@@ -6,15 +6,16 @@ import './card.css';
 
 export function Card() {
   const movePage = useNavigate();
-  function gopage() {
-    movePage('/cardinfo');
-  }
+  
+  const [searchQuery, setSearchQuery] = useState('');
   const [cafeDataList, setCafeDataList] = useState([]);
+
   const getToday = () => {
     const days = ['SUNDAY', 'MONDAY', 'TUESDAY', 'WEDNESDAY', 'THURSDAY', 'FRIDAY', 'SATURDAY'];
-    const todayIndex = new Date().getDay(); // 0부터 일요일, 1부터 월요일, ..., 6부터 토요일
+    const todayIndex = new Date().getDay();
     return days[todayIndex];
   };
+
   const today = getToday();
 
   useEffect(() => {
@@ -30,11 +31,27 @@ export function Card() {
       });
   }, []);
 
+  const filteredCafeData = cafeDataList.filter(cafeData =>
+    cafeData.cafeName.toLowerCase().includes(searchQuery.toLowerCase())
+  );
+
+  const gopage = (cafeId) => {
+    movePage(`/cardinfo/${cafeId}`);
+  };
+
   return (
     <div>
-      {cafeDataList.map(cafeData => (
+      <div className="cafe-search">
+      <input
+        type="text"
+        placeholder="카페 검색"
+        value={searchQuery}
+        onChange={(e) => setSearchQuery(e.target.value)}
+      />
+      </div>
+      {filteredCafeData.map(cafeData => (
         <div key={cafeData.cafeId} className="cafe-box">
-          <button className="cafe-name" onClick={gopage}>
+          <button className="cafe-name" onClick={() => gopage(cafeData.cafeId)}>
             {cafeData.cafeName}
           </button>
           <p className="operating-hours">{`영업시간: ${cafeData.businessHour[today] || '-'} `}</p>

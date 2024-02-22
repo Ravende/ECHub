@@ -2,6 +2,7 @@
 
 .cafe-box {
   position: relative;
+  top: -100px;
   background-color: #fff;
   width: 92%;
   height: fit-content;
@@ -75,3 +76,43 @@
   margin-top: 10px;
   margin-bottom: 60px;
 }
+
+.cafe-search{
+  position: relative;
+  width: 370px;
+  height: 40px;
+  padding: 8px;
+  padding-top: 15px;
+  margin-bottom: 20px;
+  margin-top: 12px;
+  background-color: #bddcb8;
+  border-radius: 10px;
+  box-shadow: 2px 5px 3px rgba(0, 0, 0, 0.5);
+  border: 0;
+  padding-left: 60px;
+  font-size: 23px;
+  top: -200px;
+
+}
+::placeholder{
+
+  font-size: 23px;
+  font-weight: 500;
+  color: #fff;
+  width: 200px;
+  height: 30px;
+}
+input{
+  position: relative;
+  left:-30px;
+  width: 300px;
+  height: 30px;
+  background-color:#bddcb8;
+font-size: 23px;
+}
+/* .icon-search {
+  position:relative;
+  top: 300px;
+  left: 10px;
+  font-size: 30px;
+} */
