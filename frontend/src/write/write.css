@@ -1,25 +1,33 @@
 .write-box {
-  background-color: #1d5712;
-  width: 300px;
+  width: 350px;
   height: 200px;
   padding: 20px;
-  border-radius: 10px;
-  margin-left: 50px;
-  padding-left: 60px;
-  margin-left: 20px;
+  margin-top: 10px;
+  position: relative;
+  padding: 10px;
+  top: -30px;
+  left: 20px;
+  background-color: #38702e81;
+  box-shadow: 5px 5px 3px rgba(0, 0, 0, 0.5);
 }
 .write {
+  position: relative;
   background-color: #ffffffeb;
-  width: 220px;
-  height: 170px;
+  width: 300px;
+  height: 140px;
+  left: 5%;
   margin: 5px;
-  border: 2px solid #333;
+  border: 1px solid #7c987f;
   border-radius: 10px;
 }
 #write-text {
   position: relative;
+  width: 300px;
+  height: 140px;
   text-align: center;
-  top: 40%;
+  font-size: 18px;
+  top: 0px;
+  border-radius: 10px;
 }
 
 #review-name {
@@ -28,7 +36,19 @@
   text-shadow: #000000;
   font-size: 23px;
   top: 0px;
-  left: -70px;
+  left: -100px;
   height: 30px;
   font-weight: bold;
 }
+.save-button{
+
+  position: relative;
+  background-color: #276830;
+  color:#fff;
+  border-radius: 15px;
+  width: 70px;
+  height: 30px;
+  top: -2px;
+  left:0px;
+}
+
