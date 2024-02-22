@@ -1,20 +1,30 @@
-import '../App.css';
-import './cardInfo.css';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Review } from '../review';
 import { Write } from '../write';
 import { Menu } from '../menu';
+import '../App.css';
+import './cardInfo.css';
 
 export function CardInfo() {
   const movePage = useNavigate();
+  const [activeComponent, setActiveComponent] = useState('review');
 
-  function gopage() { 
+  const goPage = () => {
     movePage('/');
-  }
+  };
+
+  const goReview = () => {
+    setActiveComponent('review');
+  };
+
+  const goWrite = () => {
+    setActiveComponent('write');
+  };
 
   return (
     <div className="cafeinfo-box">
-      <button onClick={gopage}>
+      <button onClick={goPage}>
         <img id="back_icon" alt="back" src="./assets/back_icon.png" />
       </button>
 
@@ -30,8 +40,18 @@ export function CardInfo() {
       </div>
       <div id="operating-hours">평일 12:0~22:00 / 주말 11:00~22:00</div>
 
-      <Review />
-      <Write />
+      {activeComponent === 'review' && <Review />}
+      {activeComponent === 'write' && <Write />}
+
+      <div>
+        <button className="write_button" onClick={goReview}>
+          리뷰 보기
+        </button>
+        <button className="write_button" onClick={goWrite}>
+          글쓰기
+        </button>
+      </div>
+
       <Menu />
     </div>
   );
