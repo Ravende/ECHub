@@ -10,8 +10,7 @@ export default function KakaoMap() {
 
   const mapRef = useRef(null);
 
-  const [isOpen, setIsOpen] = useState(false);
-  const [info, setInfo] = useState();
+  const [info, setInfo] = useState(null);
   const [markers, setMarkers] = useState([]);
   const [map, setMap] = useState();
   const [{ lat, lng }, setLatLng] = useState({ lat: 37.559716, lng: 126.945468 });
@@ -35,64 +34,37 @@ export default function KakaoMap() {
   function gopage() {
     movePage('/cardinfo');
   }
+
+  /* 요일 함수 */
+  const getToday = () => {
+    const days = ['SUNDAY', 'MONDAY', 'TUESDAY', 'WEDNESDAY', 'THURSDAY', 'FRIDAY', 'SATURDAY'];
+    const todayIndex = new Date().getDay(); // 0부터 일요일, 1부터 월요일, ..., 6부터 토요일
+    return days[todayIndex];
+  };
+  const today = getToday();
+
   const [cafeDataInfo, setCafeDataInfo] = useState([]);
 
-  /* 장소 검색 */
   useEffect(() => {
     axios
-      .get('https://echubserver.shop:8080/api/cafe/search?q={keyword}') // Updated endpoint
+      .get('https://echubserver.shop:8080/api/cafe') // Updated endpoint
       .then(response => {
         console.log('Cafe Data:', response.data);
-        setCafeDataInfo(response.data); // Assuming the response is a list of cafes
+        const cafeDataInfo = response.data;
+
+        const Markers = cafeDataInfo.map(cafeData => ({
+          name: cafeData.cafeName,
+          latlng: { lat: cafeData.latitude, lng: cafeData.longitude },
+          hour: cafeData.businessHour[today],
+          state: cafeData.businessStatus,
+          content: cafeData.cafeName,
+        }));
+        setMarkers(Markers);
       })
       .catch(error => {
         console.error('Error fetching cafe data:', error);
       });
-
-    if (!map) return;
-    const ps = new window.kakao.maps.services.Places();
-
-    // 키워드 검색 완료 시 호출되는 콜백함수
-    const placesSearchCB = (data, status) => {
-      if (status === window.kakao.maps.services.Status.OK) {
-        // 검색된 장소 위치를 기준으로 지도 범위 재설정 (LatLngBounds 객체에 좌표 추가)
-        const bounds = new window.kakao.maps.LatLngBounds();
-        const markers = [];
-
-        for (let i = 0; i < data.length; i++) {
-          markers.push({
-            position: {
-              lat: data[i].y,
-              lng: data[i].x,
-            },
-            content: data[i].place_name,
-          });
-          bounds.extend(new window.kakao.maps.LatLng(data[i].y, data[i].x));
-        }
-        setMarkers(markers);
-
-        // 검색된 장소 위치를 기준으로 지도 범위 재설정
-        map.setBounds(bounds);
-      }
-    };
-
-    // 키워드 검색
-    ps.keywordSearch('카페', placesSearchCB, {
-      radius: 20000,
-      location: new window.kakao.maps.LatLng(lat, lng),
-      size: 15,
-      page: 1,
-      rect: '126.942065,37.562414,126.948871,37.557108',
-    });
-    // 카테고리 검색 - 카페: CE7
-    ps.categorySearch('CE7', placesSearchCB, {
-      radius: 20000,
-      location: new window.kakao.maps.LatLng(lat, lng),
-      size: 15,
-      page: 1,
-      rect: '126.942065,37.562414,126.948871,37.557108',
-    });
-  }, [map, lat, lng]);
+  }, [map]);
 
   return (
     <div className={'map_wrap'}>
@@ -109,7 +81,7 @@ export default function KakaoMap() {
           position: 'relative',
           overflow: 'hidden',
         }}
-        level={4}
+        level={2}
         ref={mapRef}
         onCreate={setMap}>
         {/* 지도 확대, 축소 컨트롤 div */}
@@ -125,26 +97,23 @@ export default function KakaoMap() {
         {/* 마커 생성 */}
         {markers.map(marker => (
           <MapMarker
-            key={`marker-${marker.content}-${marker.position.lat},${marker.position.lng}`}
-            position={marker.position}
+            key={`${marker.name}-${marker.latlng}`}
+            position={marker.latlng}
             removable={true}
             clickable={true}
             onClick={() => gopage()} // 클릭 이벤트
             onMouseOver={() => {
-              setIsOpen(true);
               setInfo(marker);
             }} // 마우스오버 이벤트
-            onMouseOut={() => setIsOpen(false)}>
+            onMouseOut={() => setInfo(null)}>
             {/* 인포윈도우 생성 */}
-            {isOpen && info && info.content === marker.content && (
+            {info && info.content === marker.content && (
               <div className="InfoWindow">
-                <h3 style={{ lineHeight: '2.0' }}>{marker.content}</h3>
-                <p style={{ lineHeight: '1.0' }}>
-                  월~금: 12:00~22:00
-                  <br />
-                  토,일: 11:00~22:00
+                <h3 style={{ lineHeight: '2.0' }}>{marker.name}</h3>
+                <p style={{ lineHeight: '1.0' }}>{`오늘 영업: ${marker.hour || '(영업 정보 없음)'}`}</p>
+                <p style={{ lineHeight: '1.8', color: marker.state === '영업 중' ? 'blue' : 'red' }}>
+                  {marker.state === '영업 중' ? '영업중' : '영업종료'}
                 </p>
-                <p style={{ lineHeight: '1.8', color: 'blue' }}>영업중</p>
               </div>
             )}
           </MapMarker>
