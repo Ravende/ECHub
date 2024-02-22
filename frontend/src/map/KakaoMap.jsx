@@ -2,6 +2,8 @@ import { useEffect, useRef, useState } from 'react';
 import { Map, MapMarker } from 'react-kakao-maps-sdk';
 import './map.css';
 import useKakaoLoader from './useKakaoLoader.jsx';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 export default function KakaoMap() {
   useKakaoLoader();
@@ -28,16 +30,32 @@ export default function KakaoMap() {
     map.setLevel(map.getLevel() + 1);
   };
 
+  /* 마커 라우팅 */
+  const movePage = useNavigate();
+  function gopage() {
+    movePage('/cardinfo');
+  }
+  const [cafeDataInfo, setCafeDataInfo] = useState([]);
+
   /* 장소 검색 */
   useEffect(() => {
+    axios
+      .get('https://echubserver.shop:8080/api/cafe/search?q={keyword}') // Updated endpoint
+      .then(response => {
+        console.log('Cafe Data:', response.data);
+        setCafeDataInfo(response.data); // Assuming the response is a list of cafes
+      })
+      .catch(error => {
+        console.error('Error fetching cafe data:', error);
+      });
+
     if (!map) return;
     const ps = new window.kakao.maps.services.Places();
 
     // 키워드 검색 완료 시 호출되는 콜백함수
     const placesSearchCB = (data, status) => {
       if (status === window.kakao.maps.services.Status.OK) {
-        // 검색된 장소 위치를 기준으로 지도 범위를 재설정하기위해
-        // LatLngBounds 객체에 좌표를 추가합니다
+        // 검색된 장소 위치를 기준으로 지도 범위 재설정 (LatLngBounds 객체에 좌표 추가)
         const bounds = new window.kakao.maps.LatLngBounds();
         const markers = [];
 
@@ -53,20 +71,26 @@ export default function KakaoMap() {
         }
         setMarkers(markers);
 
-        // 검색된 장소 위치를 기준으로 지도 범위를 재설정합니다
+        // 검색된 장소 위치를 기준으로 지도 범위 재설정
         map.setBounds(bounds);
       }
     };
 
     // 키워드 검색
     ps.keywordSearch('카페', placesSearchCB, {
-      radius: 1000,
+      radius: 20000,
       location: new window.kakao.maps.LatLng(lat, lng),
+      size: 15,
+      page: 1,
+      rect: '126.942065,37.562414,126.948871,37.557108',
     });
     // 카테고리 검색 - 카페: CE7
     ps.categorySearch('CE7', placesSearchCB, {
-      radius: 1000,
+      radius: 20000,
       location: new window.kakao.maps.LatLng(lat, lng),
+      size: 15,
+      page: 1,
+      rect: '126.942065,37.562414,126.948871,37.557108',
     });
   }, [map, lat, lng]);
 
@@ -97,6 +121,7 @@ export default function KakaoMap() {
             <img src="https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/ico_minus.png" alt="축소" />
           </span>
         </div>
+
         {/* 마커 생성 */}
         {markers.map(marker => (
           <MapMarker
@@ -104,7 +129,7 @@ export default function KakaoMap() {
             position={marker.position}
             removable={true}
             clickable={true}
-            // onClick={() => setInfo(marker)} // 클릭 이벤트
+            onClick={() => gopage()} // 클릭 이벤트
             onMouseOver={() => {
               setIsOpen(true);
               setInfo(marker);

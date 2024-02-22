@@ -24,7 +24,9 @@ export function CardInfo() {
 
   return (
     <div className="cafeinfo-box">
+
       <button className = "backbtn"  onClick={goPage}>
+
         <img id="back_icon" alt="back" src="./assets/back_icon.png" />
       </button>
 
@@ -44,7 +46,9 @@ export function CardInfo() {
       {activeComponent === 'write' && <Write />}
 
       <div>
+
         <button className="review_button" onClick={goReview}>
+
           리뷰 보기
         </button>
         <button className="write_button" onClick={goWrite}>
