@@ -10,7 +10,7 @@ public class GlobalCorsConfiguration implements WebMvcConfigurer {
     @Override
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/**")
-                .allowedOrigins("http://localhost:3000")
+                .allowedOrigins("http://localhost:3000", "https://ewhacafeuhub.netlify.app")
                 .allowedMethods("GET", "POST")
                 .allowCredentials(true);
     }
