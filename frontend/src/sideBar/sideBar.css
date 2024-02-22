@@ -8,6 +8,7 @@ aside {
   overflow-y: auto;
   flex-shrink: 0;
   max-height: 800px;
+  pointer-events: auto;
 }
 
 #side {
