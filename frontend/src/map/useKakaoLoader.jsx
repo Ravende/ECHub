@@ -1,4 +1,3 @@
-// eslint-disable-next-line import/no-extraneous-dependencies
 import { useKakaoLoader as useKakaoLoaderOrigin } from 'react-kakao-maps-sdk';
 
 export default function useKakaoLoader() {

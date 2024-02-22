@@ -8,7 +8,7 @@ import { Menu } from '../menu';
 export function CardInfo() {
   const movePage = useNavigate();
 
-  function gopage() {
+  function gopage() { 
     movePage('/');
   }
 
