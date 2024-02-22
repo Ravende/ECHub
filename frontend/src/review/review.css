@@ -25,10 +25,11 @@
   padding: 8px;
   top: 0px;
   margin: 5px;
-  width: 200px;
+  width: 270px;
   height: 20px;
   border-radius: 10px;
   font-weight: lighter;
+  border: 1px solid #7c987f;
 }
 #review-text {
   position: relative;

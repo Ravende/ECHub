@@ -1,5 +1,5 @@
 {
-  "name": "ECHub",
+  "name": "echub",
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
@@ -14,16 +14,16 @@
   "dependencies": {
     "@babel/core": "^7.23.9",
     "@babel/preset-react": "^7.23.3",
+    "axios": "^1.6.7",
     "babel-loader": "^9.1.3",
-    "eslint-plugin-react": "^7.33.2",
     "gh-pages": "^6.1.1",
     "localforage": "^1.10.0",
     "match-sorter": "^6.3.4",
     "node-emoji": "^2.1.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-router-dom": "^6.21.3",
     "react-kakao-maps-sdk": "^1.1.26",
+    "react-router-dom": "^6.21.3",
     "react-scripts": "^5.0.1",
     "sort-by": "^1.2.0",
     "webpack": "^5.90.1",
@@ -31,12 +31,7 @@
     "webpack-dev-server": "^4.15.1"
   },
   "devDependencies": {
-    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
-    "eslint": "^8.56.0",
-    "eslint-config-airbnb-base": "^15.0.0",
-    "eslint-config-prettier": "^9.1.0",
-    "eslint-plugin-html": "^7.1.0",
-    "eslint-plugin-import": "^2.29.1"
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11"
   },
   "browserslist": {
     "production": [
