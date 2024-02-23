@@ -1,9 +1,9 @@
 // SideBar.jsx 수정본
 import React, { useState } from 'react';
 import '../App.css';
-import { Card } from '../card'; // 경로에 맞게 수정해 주세요
-import { Hashtags } from '../hashtags'; // 경로에 맞게 수정해 주세요
-import { Search } from '../search'; // 경로에 맞게 수정해 주세요
+import { Card } from '../card'; 
+import { Hashtags } from '../hashtags'; 
+import { Search } from '../search'; 
 import './sideBar.css';
 
 export function SideBar() {
