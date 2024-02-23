@@ -8,6 +8,7 @@ import '../App.css';
 import './cardInfo.css';
 
 export function CardInfo() {
+  
   const movePage = useNavigate();
   const [activeComponent, setActiveComponent] = useState('review');
  
@@ -24,6 +25,11 @@ export function CardInfo() {
     setActiveComponent('write');
   };
   const { cafeId } = useParams();
+  const [reviews, setReviews] = useState([]);
+  const addReview = (review) => {
+    setReviews(currentReviews => [...currentReviews, review]);
+  };
+
   const [cafeData, setCafeData] = useState([]);
   const getToday = () => {
     const days = ['SUNDAY', 'MONDAY', 'TUESDAY', 'WEDNESDAY', 'THURSDAY', 'FRIDAY', 'SATURDAY'];
@@ -33,25 +39,24 @@ export function CardInfo() {
   const today = getToday();
 
   useEffect(() => {
-    // Replace 'your-backend-url' with the actual URL of your backend service
-    axios
-      .get('https://echubserver.shop:8080/api/cafe/${cafeId}') // Updated endpoint
-      .then(response => {
-        console.log('Cafe Data:', response.data);
-        setCafeData(response.data); // Assuming the response is a list of cafes
-      })
-      .catch(error => {
-        console.error('Error fetching cafe data:', error);
-      });
-  }, []);
+    const fetchCafeDetails = async () => {
+      try {
+        const response = await axios.get(`https://echubserver.shop:8080/api/cafe/${cafeId}`); // 가정한 API 경로
+        setCafeData(response.data);
+      } catch (error) {
+        console.error("Fetching cafe details failed", error);
+      }
+    };
 
+    fetchCafeDetails();
+  }, [cafeId]);
   return (
     
       <div className="cafeinfo-box">
 
       <button className = "backbtn"  onClick={goPage}>
 
-        <img id="back_icon" alt="back" src="./assets/back_icon.png" />
+        <img id="back_icon" alt="back" src="../public/assets/back_icon.png" />
       </button>
 
       <div className="cafe-image-info">
@@ -63,10 +68,22 @@ export function CardInfo() {
               <div key={tag} className="hash_info">
                 {tag}
               </div>
-            ))}</div>
-      <div id="operating-hours">{`영업시간: ${cafeData.businessHour[today] || '-'} `}</div> */}
+            ))}</div> */}
+        {/* <div className="hash-wrap">
+                {cafeData?.hashtag?.map((tag, index) => (
+                  <div key={index} className="hash_info">
+                    {tag}
+                  </div>
+                ))}
+              </div> */}
 
-      {activeComponent === 'review' && <Review />}
+              <div id="operating-hours">
+        {cafeData?.businessHour ? `영업시간: ${cafeData.businessHour[today] || '-'}` : '영업시간 정보가 없습니다.'
+}
+      </div>
+      {/* <div id="operating-hours">{`영업시간: ${cafeData.businessHour[today] || '-'} `}</div> */}
+
+      {/* {activeComponent === 'review' && <Review />}
       {activeComponent === 'write' && <Write />}
 
       <div>
@@ -78,8 +95,13 @@ export function CardInfo() {
         <button className="write_button" onClick={goWrite}>
           글쓰기
         </button>
-      </div>
-
+      </div> */}
+ <div>
+      {activeComponent === 'write' && <Write onAddReview={addReview} setActiveComponent={setActiveComponent} />}
+      {activeComponent === 'review' && <Review reviews={reviews} />}
+      
+      <button className="write_button" onClick={() => setActiveComponent('write')}>글쓰기</button>
+    </div>
       <Menu />
     </div>
     

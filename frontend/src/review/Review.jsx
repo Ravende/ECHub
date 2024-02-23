@@ -4,7 +4,7 @@ import './review.css';
 import { Write } from '../write';
 
 
-export function Review() {
+export function Review({ reviews }) {
   const movePage = useNavigate();
   const [activeComponent, setActiveComponent] = useState('review');
 
@@ -23,12 +23,15 @@ export function Review() {
     <div className="review-box">
       <div id="review-name">평점</div>
 
-      <div className="review-wrap">
+      {/* <div className="review-wrap">
         <div className="review">
           <div id="review-text">리뷰</div>
           <div id="text">멀티탭이 많아요</div>
         </div>
-      </div>
+      </div> */}
+       {reviews.map((review, index) => (
+        <div key={index}>{review}</div>
+      ))}
       
       {/* {activeComponent === 'write' && <Write />}
       <button className="write_button" onClick={goWrite}>

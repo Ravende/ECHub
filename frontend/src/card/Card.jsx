@@ -6,8 +6,7 @@ import './card.css';
 
 export function Card({ searchQuery, selectedTag }) {
   const movePage = useNavigate();
-  
-   const [cafeDataList, setCafeDataList] = useState([]);
+  const [cafeDataList, setCafeDataList] = useState([]);
 
   const getToday = () => {
     const days = ['SUNDAY', 'MONDAY', 'TUESDAY', 'WEDNESDAY', 'THURSDAY', 'FRIDAY', 'SATURDAY'];
@@ -29,10 +28,11 @@ export function Card({ searchQuery, selectedTag }) {
         console.error('Error fetching cafe data:', error);
       });
   }, []);
+  
 
   const filteredCafeData = cafeDataList.filter(cafe => 
     cafe.cafeName.toLowerCase().includes(searchQuery.toLowerCase()) &&
-    (!selectedTag || (cafe.hashtag && cafe.hashtag.includes(selectedTag)))
+    (!selectedTag || (cafe.hashtagid && cafe.hashtagid.includes(selectedTag)))
   );
   
 
