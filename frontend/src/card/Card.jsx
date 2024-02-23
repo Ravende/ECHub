@@ -4,11 +4,10 @@ import axios from 'axios';
 import '../App.css';
 import './card.css';
 
-export function Card() {
+export function Card({ searchQuery, selectedTag }) {
   const movePage = useNavigate();
   
-  const [searchQuery, setSearchQuery] = useState('');
-  const [cafeDataList, setCafeDataList] = useState([]);
+   const [cafeDataList, setCafeDataList] = useState([]);
 
   const getToday = () => {
     const days = ['SUNDAY', 'MONDAY', 'TUESDAY', 'WEDNESDAY', 'THURSDAY', 'FRIDAY', 'SATURDAY'];
@@ -31,9 +30,11 @@ export function Card() {
       });
   }, []);
 
-  const filteredCafeData = cafeDataList.filter(cafeData =>
-    cafeData.cafeName.toLowerCase().includes(searchQuery.toLowerCase())
+  const filteredCafeData = cafeDataList.filter(cafe => 
+    cafe.cafeName.toLowerCase().includes(searchQuery.toLowerCase()) &&
+    (!selectedTag || (cafe.hashtag && cafe.hashtag.includes(selectedTag)))
   );
+  
 
   const gopage = (cafeId) => {
     movePage(`/cardinfo/${cafeId}`);
@@ -41,14 +42,8 @@ export function Card() {
 
   return (
     <div>
-      <div className="cafe-search">
-      <input
-        type="text"
-        placeholder="카페 검색"
-        value={searchQuery}
-        onChange={(e) => setSearchQuery(e.target.value)}
-      />
-      </div>
+  
+      
       {filteredCafeData.map(cafeData => (
         <div key={cafeData.cafeId} className="cafe-box">
           <button className="cafe-name" onClick={() => gopage(cafeData.cafeId)}>
