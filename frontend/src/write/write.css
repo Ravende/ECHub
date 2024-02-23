@@ -36,19 +36,17 @@
   text-shadow: #000000;
   font-size: 23px;
   top: 0px;
-  left: -100px;
+  left: -110px;
   height: 30px;
   font-weight: bold;
 }
-.save-button{
-
+.save-button {
   position: relative;
   background-color: #276830;
-  color:#fff;
+  color: #fff;
   border-radius: 15px;
   width: 70px;
   height: 30px;
   top: -2px;
-  left:0px;
+  left: 0px;
 }
-

@@ -13,8 +13,6 @@ export function Write({ onAddReview, setActiveComponent }) {
     setActiveComponent('review'); // 리뷰 추가 후 리뷰 컴포넌트로 전환
   };
 
-
-
   const handleSave = () => {
     // Save the entered text (reviewText) as needed (e.g., to a database or state)
     // For now, let's log it to the console
@@ -32,23 +30,9 @@ export function Write({ onAddReview, setActiveComponent }) {
     <div className="write-box">
       <div id="review-name">평점</div>
       <div className="write">
-        {/* <textarea
-          id="write-text"
-          placeholder="여기에 리뷰를 작성하세요."
-          value={reviewText}
-          onChange={(e) => setReviewText(e.target.value)}
-        ></textarea> */}
-        <textarea value={text} onChange={(e) => setText(e.target.value)}></textarea>
-      <button onClick={handleSubmit}>저장</button>
+        <textarea id="write-text" value={text} onChange={e => setText(e.target.value)}></textarea>
+        <button onClick={handleSubmit}>저장하기</button>
       </div>
-      {/* {activeComponent === 'review' && <Review />}
-      */}
-
-
-      {/* <button className="save-button" onClick={handleSave}>
-      
-        저장하기
-      </button> */}
     </div>
   );
 }
