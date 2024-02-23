@@ -89,15 +89,6 @@ export function CardInfo() {
 
       <Menu />
 
-
-      <div>
-        {activeComponent === 'write' && <Write onAddReview={addReview} setActiveComponent={setActiveComponent} />}
-        {activeComponent === 'review' && <Review reviews={reviews} />}
-
-        <button className="write_button" onClick={() => setActiveComponent('write')}>
-          글쓰기
-        </button>
-
  <div>
       {activeComponent === 'write' && <Write onAddReview={addReview} setActiveComponent={setActiveComponent} />}
       {activeComponent === 'review' && <Review reviews={reviews} />}
