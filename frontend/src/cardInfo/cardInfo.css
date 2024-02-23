@@ -11,13 +11,17 @@
 }
 
 .hash-warp {
+  
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  
+  
+  
 }
 .hash_info {
   background-color: #61886e;
-  font-size: 15px;
+  font-size: 18px;
   color: #fff;
   text-shadow: #000000;
   padding: 8px;
@@ -26,10 +30,13 @@
   margin: 5px;
   width: 160px;
   height: 40px;
-  text-align: center;
+  text-align:center;
   border-radius: 15px;
   font-weight: lighter;
   box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center; /* 수직 가운데 정렬 */
+  justify-content: center; /* 수평 가운데 정렬 */
 }
 #cafeinfoimg {
   position: relative;
