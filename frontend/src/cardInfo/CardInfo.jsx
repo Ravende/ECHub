@@ -35,23 +35,27 @@ export function CardInfo() {
     SATURDAY: '토요일',
     SUNDAY: '일요일',
   };
+  const [reviews, setReviews] = useState([]);
+  const addReview = review => {
+    setReviews(currentReviews => [...currentReviews, review]);
+  };
 
   useEffect(() => {
-    axios
-      .get(`https://echubserver.shop:8080/api/cafe/${cafeId}`) // Updated endpoint
-      .then(response => {
-        console.log('Cafe Data:', response.data);
-        setCafeData(response.data); // Assuming the response is a list of cafes
-      })
-      .catch(error => {
-        console.error('Error fetching cafe data:', error);
-      });
-  }, []);
+    const fetchCafeDetails = async () => {
+      try {
+        const response = await axios.get(`https://echubserver.shop:8080/api/cafe/${cafeId}`); // 가정한 API 경로
+        setCafeData(response.data);
+      } catch (error) {
+        console.error('Fetching cafe details failed', error);
+      }
+    };
 
+    fetchCafeDetails();
+  }, [cafeId]);
   return (
     <div className="cafeinfo-box">
       <button className="backbtn" onClick={goPage}>
-        <img id="back_icon" alt="back" src="./assets/back_icon.png" />
+        <img id="back_icon" alt="back" src="../public/assets/back_icon.png" />
       </button>
 
       <div className="cafe-image-info">
@@ -78,14 +82,11 @@ export function CardInfo() {
 
       <Menu />
 
-      {activeComponent === 'review' && <Review />}
-      {activeComponent === 'write' && <Write />}
-
       <div>
-        <button className="review_button" onClick={goReview}>
-          리뷰 보기
-        </button>
-        <button className="write_button" onClick={goWrite}>
+        {activeComponent === 'write' && <Write onAddReview={addReview} setActiveComponent={setActiveComponent} />}
+        {activeComponent === 'review' && <Review reviews={reviews} />}
+
+        <button className="write_button" onClick={() => setActiveComponent('write')}>
           글쓰기
         </button>
       </div>

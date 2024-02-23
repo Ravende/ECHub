@@ -6,7 +6,6 @@ import './card.css';
 
 export function Card({ searchQuery, selectedTag }) {
   const movePage = useNavigate();
-
   const [cafeDataList, setCafeDataList] = useState([]);
 
   const getToday = () => {
@@ -32,7 +31,7 @@ export function Card({ searchQuery, selectedTag }) {
   const filteredCafeData = cafeDataList.filter(
     cafe =>
       cafe.cafeName.toLowerCase().includes(searchQuery.toLowerCase()) &&
-      (!selectedTag || (cafe.hashtag && cafe.hashtag.includes(selectedTag))),
+      (!selectedTag || (cafe.hashtagid && cafe.hashtagid.includes(selectedTag))),
   );
 
   const gopage = cafeId => {
