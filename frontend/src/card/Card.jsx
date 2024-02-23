@@ -31,8 +31,9 @@ export function Card({ searchQuery, selectedTag }) {
   const filteredCafeData = cafeDataList.filter(
     cafe =>
       cafe.cafeName.toLowerCase().includes(searchQuery.toLowerCase()) &&
-      (!selectedTag || (cafe.hashtagid && cafe.hashtagid.includes(selectedTag))),
-  );
+      (!selectedTag || cafe.hashtagId.includes(Number(selectedTag)))
+);
+
 
   const gopage = cafeId => {
     movePage(`/cardinfo/${cafeId}`);
