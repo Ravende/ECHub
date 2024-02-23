@@ -11,8 +11,7 @@ export function CardInfo() {
   
   const movePage = useNavigate();
   const [activeComponent, setActiveComponent] = useState('review');
- 
-  
+
   const goPage = () => {
     movePage('/');
   };
@@ -24,19 +23,25 @@ export function CardInfo() {
   const goWrite = () => {
     setActiveComponent('write');
   };
-  const { cafeId } = useParams();
-  const [reviews, setReviews] = useState([]);
-  const addReview = (review) => {
-    setReviews(currentReviews => [...currentReviews, review]);
-  };
 
-  const [cafeData, setCafeData] = useState([]);
-  const getToday = () => {
-    const days = ['SUNDAY', 'MONDAY', 'TUESDAY', 'WEDNESDAY', 'THURSDAY', 'FRIDAY', 'SATURDAY'];
-    const todayIndex = new Date().getDay(); // 0부터 일요일, 1부터 월요일, ..., 6부터 토요일
-    return days[todayIndex];
+  const { cafeId } = useParams();
+
+  const [cafeData, setCafeData] = useState({});
+
+  const dayMapping = {
+    MONDAY: '월요일',
+    TUESDAY: '화요일',
+    WEDNESDAY: '수요일',
+    THURSDAY: '목요일',
+    FRIDAY: '금요일',
+    SATURDAY: '토요일',
+    SUNDAY: '일요일',
   };
-  const today = getToday();
+  const [reviews, setReviews] = useState([]);
+  const addReview = review => {
+    setReviews(currentReviews => [...currentReviews, review]);
+
+  };
 
   useEffect(() => {
     const fetchCafeDetails = async () => {
@@ -44,17 +49,17 @@ export function CardInfo() {
         const response = await axios.get(`https://echubserver.shop:8080/api/cafe/${cafeId}`); // 가정한 API 경로
         setCafeData(response.data);
       } catch (error) {
-        console.error("Fetching cafe details failed", error);
+        console.error('Fetching cafe details failed', error);
+
       }
     };
 
     fetchCafeDetails();
   }, [cafeId]);
   return (
-    
-      <div className="cafeinfo-box">
 
-      <button className = "backbtn"  onClick={goPage}>
+    <div className="cafeinfo-box">
+      <button className="backbtn" onClick={goPage}>
 
         <img id="back_icon" alt="back" src="../public/assets/back_icon.png" />
       </button>
@@ -63,48 +68,43 @@ export function CardInfo() {
         <img id="cafeinfoimg" alt="cafeimg2" src={cafeData.imageUrl} />
       </div>
       <div id="cafe-name">{cafeData.cafeName}</div>
-      {/* <div className="hash-warp">
-            {cafeData.hashtag.map(tag => (
-              <div key={tag} className="hash_info">
-                {tag}
-              </div>
-            ))}</div> */}
-        {/* <div className="hash-wrap">
-                {cafeData?.hashtag?.map((tag, index) => (
-                  <div key={index} className="hash_info">
-                    {tag}
-                  </div>
-                ))}
-              </div> */}
 
-              <div id="operating-hours">
-        {cafeData?.businessHour ? `영업시간: ${cafeData.businessHour[today] || '-'}` : '영업시간 정보가 없습니다.'
-}
+      <div className="hash-warp">
+        {cafeData.hashtag &&
+          cafeData.hashtag.map(tag => (
+            <div key={tag} className="hash_info">
+              {tag}
+            </div>
+          ))}
       </div>
-      {/* <div id="operating-hours">{`영업시간: ${cafeData.businessHour[today] || '-'} `}</div> */}
+      <div id="operating-hours">
+        {cafeData.businessHour &&
+          Object.entries(cafeData.businessHour).map(([day, hours]) => (
+            <span key={day}>
+              {`${dayMapping[day]}: ${hours}`}
+              <br />
+            </span>
+          ))}
+      </div>
 
-      {/* {activeComponent === 'review' && <Review />}
-      {activeComponent === 'write' && <Write />}
+      <Menu />
+
 
       <div>
+        {activeComponent === 'write' && <Write onAddReview={addReview} setActiveComponent={setActiveComponent} />}
+        {activeComponent === 'review' && <Review reviews={reviews} />}
 
-        <button className="review_button" onClick={goReview}>
-
-          리뷰 보기
-        </button>
-        <button className="write_button" onClick={goWrite}>
+        <button className="write_button" onClick={() => setActiveComponent('write')}>
           글쓰기
         </button>
-      </div> */}
+
  <div>
       {activeComponent === 'write' && <Write onAddReview={addReview} setActiveComponent={setActiveComponent} />}
       {activeComponent === 'review' && <Review reviews={reviews} />}
       
       <button className="write_button" onClick={() => setActiveComponent('write')}>글쓰기</button>
     </div>
-      <Menu />
+
     </div>
-    
   );
 }
-

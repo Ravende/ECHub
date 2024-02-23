@@ -1,13 +1,23 @@
 #menu {
   position: relative;
-  top: 20px;
-  font-size: 25px;
-  color: #333;
+  margin-top: 10px;
   text-align: center;
+  justify-content: center;
   margin: 20px;
 }
 
-.menulist-warp {
+.bestMenu {
+  position: relative;
+  width: 360px;
+  text-align: center;
+  padding: 5px;
+  font-size: 25px;
+  color: #333;
+  background-color: #7ac66d81;
+  box-shadow: 5px 5px 3px rgba(0, 0, 0, 0.5);
+}
+
+/* .menulist-warp {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -24,4 +34,4 @@
   border-radius: 30px;
   border: 1px solid #333;
   box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.5);
-}
+} */

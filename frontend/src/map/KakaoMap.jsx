@@ -110,7 +110,7 @@ export default function KakaoMap() {
             {info && info.content === marker.content && (
               <div className="InfoWindow">
                 <h3 style={{ lineHeight: '2.0' }}>{marker.name}</h3>
-                <p style={{ lineHeight: '1.0' }}>{`오늘 영업: ${marker.hour || '(영업 정보 없음)'}`}</p>
+                <p style={{ lineHeight: '1.0' }}>{`오늘 영업: ${marker.hour || '(정보 없음)'}`}</p>
                 <p style={{ lineHeight: '1.8', color: marker.state === '영업 중' ? 'blue' : 'red' }}>
                   {marker.state === '영업 중' ? '영업중' : '영업종료'}
                 </p>
