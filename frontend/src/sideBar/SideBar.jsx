@@ -15,7 +15,7 @@ export function SideBar() {
   };
 
   const handleSelectHashtag = tag => { // 단일 해시태그 처리로 변경
-    setSelectedTag(tag); // 첫 번째 선택된 태그만 저장
+    setSelectedTag(Number(tag)); // 첫 번째 선택된 태그만 저장
   };
 
   return (
