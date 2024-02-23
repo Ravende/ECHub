@@ -9,7 +9,7 @@ export default function App() {
     <Router>
       <Routes>
         <Route path="/" element={<Main />} />
-        <Route path="/cardInfo" element={<CardInfoContainer />} />
+        <Route path="/cardInfo/:cafeId" element={<CardInfoContainer />} />
       </Routes>
     </Router>
   );
