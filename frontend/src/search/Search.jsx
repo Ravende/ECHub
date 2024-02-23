@@ -24,6 +24,7 @@ export function Search({ onSearchChange }) {
           value={searchQuery}
           onChange={handleSearchChange}
         />
+        
         <div className="icon-search"></div>
       </div>
     </form>
