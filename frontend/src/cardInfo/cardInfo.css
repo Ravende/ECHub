@@ -1,24 +1,66 @@
 .cafeinfo-box {
   background-color: #fff;
-  margin: 0px;
-  height: 1600px;
-  padding: 0px;
+  margin: 0;
+  height: auto;
+  padding: 0;
   border-radius: 10px;
   text-align: center;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+}
+
+#cafeinfoimg {
+  position: relative;
+  left: 0px;
+  top: 10px;
+  width: 400px;
+  height: 280px;
+  border-radius: 20px;
+  margin-bottom: 30px;
+}
+
+.backbtn {
+  background-color: #fff;
+  position: relative;
+  left: 8px;
+  top: -2px;
+  width: 30px;
+  height: 30px;
+  border-radius: 100%;
+}
+
+#back_icon {
+  position: absolute;
+  left: 3px;
+  top: 3px;
+  width: 30px;
+  height: 30px;
+}
+
+#cafe-name {
+  width: 370px;
+  font-size: 28px;
+  text-align: left;
+  position: relative;
+  padding: 10px;
+  height: auto;
+  margin-top: 30px;
+  margin-bottom: 20px;
+  top: -30px;
+  left: 20px;
+  font-weight: bold;
+  color: #333;
+  background-color: #7ac66d81;
+  box-shadow: 5px 5px 3px rgba(0, 0, 0, 0.5);
 }
 
 .hash-warp {
-  
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  
-  
-  
+  margin-top: 20px;
 }
+
 .hash_info {
   background-color: #61886e;
   font-size: 18px;
@@ -30,7 +72,7 @@
   margin: 5px;
   width: 160px;
   height: 40px;
-  text-align:center;
+  text-align: center;
   border-radius: 15px;
   font-weight: lighter;
   box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);
@@ -38,55 +80,14 @@
   align-items: center; /* 수직 가운데 정렬 */
   justify-content: center; /* 수평 가운데 정렬 */
 }
-#cafeinfoimg {
-  position: relative;
-  left: 0px;
-  top: 10px;
-  width: 400px;
-  height: 280px;
-  border-radius: 20px;
-  margin-bottom: 30px;
-}
-
-#back_icon {
-  position: absolute;
-  left: -1px;
-  top: 0px;
-  width: 30px;
-  height: 30px;
-}
-#cof-icon {
-  position: relative;
-  width: 10px;
-  height: 10px;
-  left: 0px;
-  top: 10px;
-}
-
-#cafe-name {
-  width: 370px;
-  font-size: 28px;
-  text-align: left;
-  position: relative;
-  padding: 10px;
-  height: auto;
-  margin-top: 30px;
-  margin-bottom: 30px;
-  top: -30px;
-  left: 20px;
-  font-weight: bold;
-  color: #333;
-  background-color: #7ac66d81;
-  box-shadow: 5px 5px 3px rgba(0, 0, 0, 0.5);
-}
 
 #operating-hours {
   position: relative;
   border: 2px solid #276830;
   background-color: #d8e2dc;
-  height: 200px;
+  height: auto;
   padding: 10px;
-  margin-top: 10px;
+  margin-top: -80px;
   margin-left: 20px;
   margin-bottom: 60px;
   text-align: center;
@@ -114,14 +115,4 @@
   height: 30px;
   left: 150px;
   top: -240px;
-}
-
-.backbtn {
-  background-color: #fff;
-  position: relative;
-  left: 10px;
-  top: 0px;
-  width: 30px;
-  height: 30px;
-  border-radius: 100%;
 }

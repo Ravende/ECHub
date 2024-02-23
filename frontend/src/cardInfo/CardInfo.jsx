@@ -6,9 +6,9 @@ import { Write } from '../write';
 import { Menu } from '../menu';
 import '../App.css';
 import './cardInfo.css';
+import backIcon from './back_icon.png';
 
 export function CardInfo() {
-  
   const movePage = useNavigate();
   const [activeComponent, setActiveComponent] = useState('review');
 
@@ -40,7 +40,6 @@ export function CardInfo() {
   const [reviews, setReviews] = useState([]);
   const addReview = review => {
     setReviews(currentReviews => [...currentReviews, review]);
-
   };
 
   useEffect(() => {
@@ -50,19 +49,16 @@ export function CardInfo() {
         setCafeData(response.data);
       } catch (error) {
         console.error('Fetching cafe details failed', error);
-
       }
     };
 
     fetchCafeDetails();
   }, [cafeId]);
   return (
-
     <div className="cafeinfo-box">
-      <button className="backbtn" onClick={goPage}>
-
-        <img id="back_icon" alt="back" src="../public/assets/back_icon.png" />
-      </button>
+      <div className="backbtn" onClick={goPage}>
+        <img id="back_icon" alt="back" src={backIcon} />
+      </div>
 
       <div className="cafe-image-info">
         <img id="cafeinfoimg" alt="cafeimg2" src={cafeData.imageUrl} />
@@ -77,6 +73,7 @@ export function CardInfo() {
             </div>
           ))}
       </div>
+      <Menu />
       <div id="operating-hours">
         {cafeData.businessHour &&
           Object.entries(cafeData.businessHour).map(([day, hours]) => (
@@ -87,15 +84,13 @@ export function CardInfo() {
           ))}
       </div>
 
-      <Menu />
-
- <div>
-      {activeComponent === 'write' && <Write onAddReview={addReview} setActiveComponent={setActiveComponent} />}
-      {activeComponent === 'review' && <Review reviews={reviews} />}
-      
-      <button className="write_button" onClick={() => setActiveComponent('write')}>글쓰기</button>
-    </div>
-
+      <div>
+        {activeComponent === 'write' && <Write onAddReview={addReview} setActiveComponent={setActiveComponent} />}
+        {activeComponent === 'review' && <Review reviews={reviews} />}
+        <button className="write_button" onClick={() => setActiveComponent('write')}>
+          글쓰기
+        </button>
+      </div>
     </div>
   );
 }

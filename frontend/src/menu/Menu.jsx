@@ -21,7 +21,10 @@ export function Menu() {
 
   return (
     <div id="menu">
-      <div className="bestMenu">대표메뉴: {cafeData.bestMenu}</div>
+      <div className="bestMenu">
+        대표메뉴: <br />
+        {cafeData.bestMenu}
+      </div>
     </div>
   );
 }

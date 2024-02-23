@@ -1,19 +1,20 @@
 #menu {
   position: relative;
-  margin-top: 10px;
   text-align: center;
-  justify-content: center;
-  margin: 20px;
+  margin: 50px;
+  margin-bottom: 25px;
 }
 
 .bestMenu {
+  width: auto;
   position: relative;
-  width: 360px;
+  top: -110px;
   text-align: center;
   padding: 5px;
-  font-size: 25px;
+  font-size: 23px;
   color: #333;
-  background-color: #7ac66d81;
+  border: 1.5px solid #333;
+  background-color: white;
   box-shadow: 5px 5px 3px rgba(0, 0, 0, 0.5);
 }
 

@@ -31,9 +31,9 @@ export default function KakaoMap() {
 
   /* 마커 라우팅 */
   const movePage = useNavigate();
-  function gopage() {
-    movePage('/cardinfo');
-  }
+  const gopage = cafeId => {
+    movePage(`/cardinfo/${cafeId}`);
+  };
 
   /* 요일 함수 */
   const getToday = () => {
@@ -43,8 +43,6 @@ export default function KakaoMap() {
   };
   const today = getToday();
 
-  const [cafeDataInfo, setCafeDataInfo] = useState([]);
-
   useEffect(() => {
     axios
       .get('https://echubserver.shop:8080/api/cafe') // Updated endpoint
@@ -53,6 +51,7 @@ export default function KakaoMap() {
         const cafeDataInfo = response.data;
 
         const Markers = cafeDataInfo.map(cafeData => ({
+          id: cafeData.cafeId,
           name: cafeData.cafeName,
           latlng: { lat: cafeData.latitude, lng: cafeData.longitude },
           hour: cafeData.businessHour[today],
@@ -101,7 +100,7 @@ export default function KakaoMap() {
             position={marker.latlng}
             removable={true}
             clickable={true}
-            onClick={() => gopage()} // 클릭 이벤트
+            onClick={() => gopage(marker.id)} // 클릭 이벤트
             onMouseOver={() => {
               setInfo(marker);
             }} // 마우스오버 이벤트
