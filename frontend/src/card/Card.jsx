@@ -27,11 +27,13 @@ export function Card({ searchQuery, selectedTag }) {
         console.error('Error fetching cafe data:', error);
       });
   }, []);
+  
+
 
   const filteredCafeData = cafeDataList.filter(
     cafe =>
       cafe.cafeName.toLowerCase().includes(searchQuery.toLowerCase()) &&
-      (!selectedTag || (cafe.hashtagid && cafe.hashtagid.includes(selectedTag))),
+
   );
 
   const gopage = cafeId => {
