@@ -4,7 +4,6 @@ import { CardInfoContainer } from './cardInfo';
 import { Main } from './main';
 
 export default function App() {
- 
   return (
     <Router>
       <Routes>

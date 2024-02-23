@@ -10,8 +10,7 @@ import './cardInfo.css';
 export function CardInfo() {
   const movePage = useNavigate();
   const [activeComponent, setActiveComponent] = useState('review');
- 
-  
+
   const goPage = () => {
     movePage('/');
   };
@@ -23,19 +22,23 @@ export function CardInfo() {
   const goWrite = () => {
     setActiveComponent('write');
   };
+
   const { cafeId } = useParams();
-  const [cafeData, setCafeData] = useState([]);
-  const getToday = () => {
-    const days = ['SUNDAY', 'MONDAY', 'TUESDAY', 'WEDNESDAY', 'THURSDAY', 'FRIDAY', 'SATURDAY'];
-    const todayIndex = new Date().getDay(); // 0부터 일요일, 1부터 월요일, ..., 6부터 토요일
-    return days[todayIndex];
+  const [cafeData, setCafeData] = useState({});
+
+  const dayMapping = {
+    MONDAY: '월요일',
+    TUESDAY: '화요일',
+    WEDNESDAY: '수요일',
+    THURSDAY: '목요일',
+    FRIDAY: '금요일',
+    SATURDAY: '토요일',
+    SUNDAY: '일요일',
   };
-  const today = getToday();
 
   useEffect(() => {
-    // Replace 'your-backend-url' with the actual URL of your backend service
     axios
-      .get('https://echubserver.shop:8080/api/cafe/${cafeId}') // Updated endpoint
+      .get(`https://echubserver.shop:8080/api/cafe/${cafeId}`) // Updated endpoint
       .then(response => {
         console.log('Cafe Data:', response.data);
         setCafeData(response.data); // Assuming the response is a list of cafes
@@ -46,11 +49,8 @@ export function CardInfo() {
   }, []);
 
   return (
-    
-      <div className="cafeinfo-box">
-
-      <button className = "backbtn"  onClick={goPage}>
-
+    <div className="cafeinfo-box">
+      <button className="backbtn" onClick={goPage}>
         <img id="back_icon" alt="back" src="./assets/back_icon.png" />
       </button>
 
@@ -58,31 +58,37 @@ export function CardInfo() {
         <img id="cafeinfoimg" alt="cafeimg2" src={cafeData.imageUrl} />
       </div>
       <div id="cafe-name">{cafeData.cafeName}</div>
-      {/* <div className="hash-warp">
-            {cafeData.hashtag.map(tag => (
-              <div key={tag} className="hash_info">
-                {tag}
-              </div>
-            ))}</div>
-      <div id="operating-hours">{`영업시간: ${cafeData.businessHour[today] || '-'} `}</div> */}
+      <div className="hash-warp">
+        {cafeData.hashtag &&
+          cafeData.hashtag.map(tag => (
+            <div key={tag} className="hash_info">
+              {tag}
+            </div>
+          ))}
+      </div>
+      <div id="operating-hours">
+        {cafeData.businessHour &&
+          Object.entries(cafeData.businessHour).map(([day, hours]) => (
+            <span key={day}>
+              {`${dayMapping[day]}: ${hours}`}
+              <br />
+            </span>
+          ))}
+      </div>
+
+      <Menu />
 
       {activeComponent === 'review' && <Review />}
       {activeComponent === 'write' && <Write />}
 
       <div>
-
         <button className="review_button" onClick={goReview}>
-
           리뷰 보기
         </button>
         <button className="write_button" onClick={goWrite}>
           글쓰기
         </button>
       </div>
-
-      <Menu />
     </div>
-    
   );
 }
-

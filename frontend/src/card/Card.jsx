@@ -6,8 +6,8 @@ import './card.css';
 
 export function Card({ searchQuery, selectedTag }) {
   const movePage = useNavigate();
-  
-   const [cafeDataList, setCafeDataList] = useState([]);
+
+  const [cafeDataList, setCafeDataList] = useState([]);
 
   const getToday = () => {
     const days = ['SUNDAY', 'MONDAY', 'TUESDAY', 'WEDNESDAY', 'THURSDAY', 'FRIDAY', 'SATURDAY'];
@@ -18,7 +18,6 @@ export function Card({ searchQuery, selectedTag }) {
   const today = getToday();
 
   useEffect(() => {
-    // Replace 'your-backend-url' with the actual URL of your backend service
     axios
       .get('https://echubserver.shop:8080/api/cafe') // Updated endpoint
       .then(response => {
@@ -30,20 +29,18 @@ export function Card({ searchQuery, selectedTag }) {
       });
   }, []);
 
-  const filteredCafeData = cafeDataList.filter(cafe => 
-    cafe.cafeName.toLowerCase().includes(searchQuery.toLowerCase()) &&
-    (!selectedTag || (cafe.hashtag && cafe.hashtag.includes(selectedTag)))
+  const filteredCafeData = cafeDataList.filter(
+    cafe =>
+      cafe.cafeName.toLowerCase().includes(searchQuery.toLowerCase()) &&
+      (!selectedTag || (cafe.hashtag && cafe.hashtag.includes(selectedTag))),
   );
-  
 
-  const gopage = (cafeId) => {
+  const gopage = cafeId => {
     movePage(`/cardinfo/${cafeId}`);
   };
 
   return (
     <div>
-  
-      
       {filteredCafeData.map(cafeData => (
         <div key={cafeData.cafeId} className="cafe-box">
           <button className="cafe-name" onClick={() => gopage(cafeData.cafeId)}>
