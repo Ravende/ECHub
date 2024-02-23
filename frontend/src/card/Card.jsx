@@ -33,7 +33,7 @@ export function Card({ searchQuery, selectedTag }) {
   const filteredCafeData = cafeDataList.filter(
     cafe =>
       cafe.cafeName.toLowerCase().includes(searchQuery.toLowerCase()) &&
-
+(!selectedTag || (cafe.hashtagid && cafe.hashtagid.includes(selectedTag))),
   );
 
   const gopage = cafeId => {
